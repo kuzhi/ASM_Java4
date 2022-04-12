@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-
+<%@taglib uri = "http://java.sun.com/jstl/core_rt" prefix ="c"%>
+	<%@taglib uri = "http://java.sun.com/jstl/fmt_rt" prefix ="fmt"%>      
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,15 +10,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quáº£n lÃ½-ASM java 4</title>
+    <title>${page.title}</title>
 
    <!-- CSS -->
-   <link rel="stylesheet" href="../asset/css/base.css">
-   <link rel="stylesheet" href="../asset/css/index.css">
 
-   <link rel="stylesheet" href="../asset/fontawesome-free-5.15.4-web/css/all.min.css" >
-
-
+	<link rel="stylesheet" href="<c:url value= "/views/css/base.css"/>">
+    <link rel="stylesheet" href="<c:url value= "/views/css/index.css"/>">
+    <link rel="stylesheet" href="<c:url value= "/views/fontawesome/css/all.min.css"/>" >
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -26,10 +25,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     
     <!-- Javascript -->
+   
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../asset/js/controllroute.js"></script>
 
     
     
@@ -41,25 +40,24 @@
     </style>
 </head>
        
-<body ng-app="myAdmin">
-    <div id="wrapper" class="container-fluid" ng-controller="myAdminCtrl">
+<body >
+    <div id="wrapper" class="container-fluid" >
         <header id="header" class="header">
-           <div ng-include="menu"></div>
+			<jsp:include page="${view_menuAdmin}"/>
         </header>
         <!-- header wrapper -->
         <div id="main" class="container-fluid">
             <div class="row">
-                <!-- full thÃ¬ 9/12 - ipad thÃ¬ 9/12 - dt thÃ¬ 12/12 -->
-                <div class="col-12" ng-include = "mainbodyAdmin">
-                    
+                <div class="col-12">
+            			<jsp:include page="${view_mainbodyAdmin}"/>        
                 </div>
                
             </div>
         </div>
         <!-- #main -->
         <!--footer-->
-        <div ng-include="footer">
-
+        <div>
+				<jsp:include page="${view_footerAdmin}"/>        		
         </div>
         <!-- .footer-wrapper -->
     </div>
@@ -71,11 +69,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
     <!--AnguScript cac file-->
-    <script src="../asset/js/adminControll.js"></script>
-    <script src="../asset/js/admin.js"></script>
-    <script src="../asset/js/adminHoSo.js"></script>
-        <script src="../asset/js/tongPhim.js"></script>
-    
-
+    <script src="<c:url value= "/views/js/adminHoSo.js"/>" ></script>
+    <script src="<c:url value= "/views/js/tongPhim.js"/>" ></script>
 </body>
 </html>

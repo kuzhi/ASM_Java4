@@ -1,19 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+    <%@taglib uri = "http://java.sun.com/jstl/core_rt" prefix ="c"%>
+	<%@taglib uri = "http://java.sun.com/jstl/fmt_rt" prefix ="fmt"%>    
+
 <div class="header-wrapper">
     <div class="row">
         <nav  class="navbar  navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <!-- Logo -->
-                <a class="navbar-brand"  ng-click="trangchu()"  href="#!product">
-                    <img src="asset/img/logo.png" width="60px"  height="50px" alt="">
+                <a class="navbar-brand"   href="${home}">
+                    <img src="<c:url value ="/views/img/logo.png"/>" width="60px"  height="50px" alt="">
                 </a>
                 <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,7 +19,7 @@
                     <ul class="navbar-nav me-auto" style="margin-left: 12px;">
                       
                         <li class="nav-item">
-                            <a id="list__item" class="menu-item nav-link" ng-click="trangchu()" href="#!product" >Danh mục phim</a>
+                            <a id="list__item" class="menu-item nav-link" ng-click="trangchu()" href="#!product" >Danh mục video</a>
                         </li>
                         <li class="nav-item">
                             <a id="list__item" class="menu-item nav-link" ng-click="lienHe()" href="#!contact" >Liên hệ</a>
@@ -34,7 +30,7 @@
                         
                     </ul>
                     <ul class="navbar-nav">
-
+						<c:if test="${!user} ">
                         <!-- Chưa đăng nhập -->
                         <div ng-if="clickLogin">
                             <li class="nav-item dropdown">
@@ -54,10 +50,12 @@
                                 </ul>
                             </li>
                         </div>
+                        </c:if>
+                        
+                        <c:if test="${user} ">
                         <!-- Đã đăng nhập -->
                         <div ng-if="!clickLogin">
                             <li class="nav-item dropdown d-flex">
-                                    <img src="asset/img/user.jpg" class="rounded-circle" width="45px" alt="">
                                     <a id="user" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <!-- Cần thay đổi -->
@@ -77,6 +75,7 @@
                                 </ul>
                             </li>
                         </div>
+                        </c:if>
                     </ul>
                 </div>
             </div>
@@ -92,12 +91,12 @@
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="card bg-dark text-white text-center">
-                    <img src="../asset/img/johnwick3.png" class="card-img d-block " alt="movie"  height="800px">
+                    <img src="<c:url value ="/views/img/johnwick3.png"/>" class="card-img d-block " alt="movie"  height="800px">
                     <div class="card-img-overlay">
                         <div class="card-body position-absolute top-50 start-50 translate-middle">
                             <h5 class="card-title fw-1 fs-1">JOHN WICK</h5>
                             <p class="card-text fw-1 fs-1">PHIM CHIẾU RẠP BẢN ĐẸP</p>
-                            <a href="#!watchFilm"  ng-click ="xemPhim()" class="btn btn-outline-primary fw-1 fs-1">Xem phim</a>
+                            <a href="#!watchFilm"  ng-click ="xemPhim()" class="btn btn-outline-primary fw-1 fs-1">Xem video</a>
                             <a href="#!detailFilm"  ng-click ="chiTiet()" class="btn btn-outline-primary fw-1 fs-1">Xem chi tiết</a>
                           </div>
                     </div>
@@ -105,7 +104,7 @@
               </div>
               <div class="carousel-item">
                 <div class="card bg-dark text-white text-center">
-                    <img src="../asset/img/mortal.png" class="card-img d-block  " alt="movie"   height="800px">
+                    <img src="<c:url value ="/views/img/mortal.png"/>" class="card-img d-block  " alt="movie"   height="800px">
                     <div class="card-img-overlay">
                         <div class="card-body position-absolute top-50 start-50 translate-middle">
                             <h5 class="card-title fw-1 fs-1">MORTAL KOMBAT</h5>
@@ -118,7 +117,7 @@
               </div>
               <div class="carousel-item">
                 <div class="card bg-dark text-white text-center">
-                    <img src="../asset/img/spiritedaway.png" class="card-img d-block " alt="anime" height="800px">
+                    <img src="<c:url value ="/views/img/spiritedaway.png"/>" class="card-img d-block " alt="anime" height="800px">
                     <div class="card-img-overlay">
                         <div class="card-body position-absolute top-50 start-50 translate-middle">
                             <h5 class="card-title fw-1 fs-1">SPIRITED AWAY</h5>
@@ -142,5 +141,3 @@
     </div>
     <!-- banner -->
 </div>
-</body>
-</html>

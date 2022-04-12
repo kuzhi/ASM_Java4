@@ -1,19 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+    
+    <%@taglib uri = "http://java.sun.com/jstl/core_rt" prefix ="c"%>
+	<%@taglib uri = "http://java.sun.com/jstl/fmt_rt" prefix ="fmt"%>    
+
 <div class="header-wrapper">
     <div class="row">
             <nav  class="navbar navbar-expand-lg bg-light">
                 <div class="container-fluid">
             <!-- Logo -->
                     <a class="navbar-brand"  ng-click="trangchu()"  href="#!user">
-                        <img src="../asset/img/logo.png" width="60px"  height="50px" alt="">
+                        <img src="<c:url value ="/views/img/logo.png"/>" width="60px"  height="50px" alt="">
                     </a>
                     <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -58,5 +55,3 @@
             </nav>
     </div>
 </div>
-</body>
-</html>

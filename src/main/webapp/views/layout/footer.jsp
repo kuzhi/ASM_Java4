@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+  <%@taglib uri = "http://java.sun.com/jstl/core_rt" prefix ="c"%>
+	<%@taglib uri = "http://java.sun.com/jstl/fmt_rt" prefix ="fmt"%>      
+
+
 <footer class="footer-wrapper container-fluid" style="margin-top: 10px;">
     <div id="footer" class="row">
         <div class="col-4">
@@ -17,16 +14,16 @@
             <p class="text-white fs-5" style="margin: 25px 0 0 25px;">Theo dõi chúng tôi</p>
             <div class="d-flex" style="margin-left: 3rem;">
                 <div style="margin: 5px 5px;">
-                    <img src="asset/img/facebook_icon.png" alt="icon 1">
+                    <img src="<c:url  value="/views/img/facebook_icon.png"/>" alt="icon 1">
                 </div>
                 <div style="margin: 5px 5px;">
-                    <img src="asset/img/youtube_icon.png" alt="icon 2">
+                    <img src="<c:url  value="/views/img/youtube_icon.png"/>" alt="icon 2">
                 </div>
                 <div style="margin: 5px 5px;">
-                    <img src="asset/img/instagram_icon.png" alt="icon 3">
+                    <img src=<c:url  value="/views/img/instagram_icon.png"/> "alt="icon 3">
                 </div>
                 <div style="margin: 5px 5px;">
-                    <img src="asset/img/github_icon.png" alt="icon 4">
+                    <img src="<c:url  value="/views/img/github_icon.png" />" alt="icon 4">
                 </div>
             </div>
         </div>
@@ -49,5 +46,3 @@
         
     </div>
 </footer>
-</body>
-</html>
