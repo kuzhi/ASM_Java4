@@ -1,4 +1,4 @@
-package asm.servlet;
+package asm.admin;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -28,8 +28,7 @@ import asm.common.PageType;
  */
 @MultipartConfig
 @WebServlet({"/admin/UsersManagement/index","/admin/UsersManagement/create","/admin/UsersManagement/edit/*","/admin/UsersManagement/update","/admin/UsersManagement/delete",
-			"/admin/UsersManagement/reset"	
-})
+			"/admin/UsersManagement/reset"	})
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -59,7 +58,6 @@ public class AdminServlet extends HttpServlet {
 
 				}
 		 }
-		 System.out.println(user.getId());
 		request.setAttribute("user", user);
 		request.setAttribute("items", uDao.findAll());
 		
@@ -82,15 +80,22 @@ public class AdminServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		try {
 			String url = request.getRequestURI();
-			
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 			
-			Date setDate = format.parse(request.getParameter("birthDay"));
-			System.out.println(setDate+"aaa");
+			String getBirh = request.getParameter("birthDay");
+			if(getBirh.equals("")) {
+				request.setAttribute("error", "Vui lòng điền các trường");
+
+			}
+			else {
+				Date setDate = format.parse(getBirh);
+
+			
 
 			DateTimeConverter dtc = new DateConverter(setDate) ;
 			dtc.setPattern("dd/mm/yyyy");
 			ConvertUtils.register(dtc, Date.class);
+			}
 			User user = new User();	
 			
 			UserDAO uDao = new UserDAO();
@@ -108,12 +113,11 @@ public class AdminServlet extends HttpServlet {
 					request.setAttribute("error", "Lỗi");
 				}
 			}
-			else if(url.contains("update")) {
+			 if(url.contains("update")) {
 				try {
 					
 					BeanUtils.populate(user, request.getParameterMap());
 					
-					System.out.println(user.getBirthDay()+"aaa");
 
 					if(uDao.findByID(user.getId()) != null) {
 						uDao.update(user);
@@ -130,7 +134,7 @@ public class AdminServlet extends HttpServlet {
 				
 			}
 			
-			else if(url.contains("delete")) {
+			 if(url.contains("delete")) {
 				try {
 					
 					BeanUtils.populate(user, request.getParameterMap());
@@ -145,9 +149,28 @@ public class AdminServlet extends HttpServlet {
 				} catch (Exception e) {
 					request.setAttribute("error", "Lỗi");
 				}
-				
-				
+					
 			}
+			 
+			 if(url.contains("reset")) {
+											
+						String getDate = request.getParameter("birthDay");
+						System.out.println(getDate);
+						try {	
+						if(!getDate.equalsIgnoreCase("")) {
+							user= new User();
+							user.setBirthDay(null);
+						}
+						else {
+							request.setAttribute("error", "Vui lòng điền trường ngày sinh");
+
+						}
+							
+					} catch (Exception e) {
+						request.setAttribute("error", "Lỗi");
+					}
+						
+				}
 			///
 			request.setAttribute("user", user);
 			request.setAttribute("items", uDao.findAll());

@@ -1,15 +1,13 @@
 package asm.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.StoredProcedureParameter;
-
-import asm.entity.Report;
 
 @NamedStoredProcedureQueries(
 		{

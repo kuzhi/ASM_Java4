@@ -16,8 +16,8 @@ public class PageInfo {
 public static Map<PageType, PageInfo> pageRoute = new HashedMap();
 	static {
 		pageRoute.put(PageType.ADMIN_PAGE, new PageInfo("Quản Trị viên","/views/main/admin/NguoiDung.jsp",null));
-		pageRoute.put(PageType.REPORT_MANAGEMENT_PAGE, new PageInfo("Report Management","/admin/reports/reports.jsp",null));
-		pageRoute.put(PageType.VIDEO_MANAGEMENT_PAGE, new PageInfo("Video Management","/admin/videos/videos.jsp",null));
+		pageRoute.put(PageType.REPORT_MANAGEMENT_PAGE, new PageInfo("Báo cáo","/views/main/admin/BaoCao.jsp",null));
+		pageRoute.put(PageType.VIDEO_MANAGEMENT_PAGE, new PageInfo("Quản lý Video","/views/main/admin/TongPhim.jsp",null));
 		pageRoute.put(PageType.SITE_HOME_PAGE, new PageInfo("Home Page","/sites/home/home.jsp",null));
 		pageRoute.put(PageType.SITE_LOGIN_PAGE, new PageInfo("Login Page","/sites/users/login.jsp",null));
 		pageRoute.put(PageType.SITE_REGISTRATION_PAGE, new PageInfo("Registration","/sites/users/registration.jsp",null));

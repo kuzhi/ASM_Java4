@@ -5,6 +5,7 @@
 	<%@taglib uri = "http://java.sun.com/jstl/fmt_rt" prefix ="fmt"%>    
 
 <div class="header-wrapper">
+	<c:url var ="url" value="/admin" />
     <div class="row">
             <nav  class="navbar navbar-expand-lg bg-light">
                 <div class="container-fluid">
@@ -20,13 +21,13 @@
                         <ul class="navbar-nav me-auto" style="margin-left: 12px;">
                         
                             <li class="nav-item">
-                                <a id="list__item" class="menu-item nav-link" ng-click="trangchu()" href="#!user" >Người dùng</a>
+                                <a id="list__item" class="menu-item nav-link"  href="${url}/UsersManagement/index" >Người dùng</a>
                             </li>
                             <li class="nav-item">
-                                <a id="list__item" class="menu-item nav-link" ng-click="phim()" href="#!film" >Phim</a>
+                                <a id="list__item" class="menu-item nav-link"  href="${url}/VideoManagement/index" >Video</a>
                             </li>
                             <li class="nav-item">
-                                <a id="list__item" class="menu-item nav-link" ng-click="hoiDap()" href="#!report" >Báo cáo</a>
+                                <a id="list__item" class="menu-item nav-link"  href="${url}/Report/index" >Báo cáo</a>
                             </li>
                             
                         </ul>

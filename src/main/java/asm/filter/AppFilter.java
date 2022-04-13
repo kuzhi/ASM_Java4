@@ -36,9 +36,10 @@ public class AppFilter  implements javax.servlet.Filter {
 			throws IOException, ServletException {
 		HttpServletRequest req =(HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
+		
 		req.setCharacterEncoding("utf8");
 		resp.setCharacterEncoding("utf8");
-
+		
 		chain.doFilter(req, resp);
 
 	}

@@ -9,7 +9,7 @@
  			<c:url var="url" value="/admin/UsersManagement" />
  
         <div class="row justify-content-center">
-        	<div class="col">
+        	<div class="row">
 				<c:if test="${not empty message}">
 					<div class="alert alert-success">${message}</div>
 				</c:if>
@@ -128,8 +128,23 @@
 					      <td>${u.id}</td>
 					      <td>${u.fullname}</td>
 					      <td>${u.birthDay}</td>
-					      <td>${u.gender}</td>
-					      <td>${u.admin}</td>
+					      <c:choose>
+					      	<c:when test="${u.gender==true}">
+					      		<td>Nam</td>
+					      	</c:when>
+					      	<c:when test="${u.gender==false}">
+					      		<td>Nữ</td>
+					      	</c:when>	
+					      </c:choose>
+					      
+					      <c:choose>
+					      	<c:when test="${u.admin==true}">
+					      		<td>Admin</td>
+					      	</c:when>
+					      	<c:when test="${u.admin==false}">
+					      		<td>Người dùng</td>
+					      	</c:when>	
+					      </c:choose>
 					      <td><a href="${url}/edit/${u.id}" class="text-decoration-none">Edit</a></td>
 					    </tr>
 			   		</c:forEach>

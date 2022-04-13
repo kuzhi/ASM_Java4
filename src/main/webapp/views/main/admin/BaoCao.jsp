@@ -23,13 +23,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>Spider man: No way home</td>
-      <td>100</td>
-      <td>5/2/2022</td>
-      <td>6/2/2022</td>
-    </tr>
-    
+  		<c:forEach var="re" items="${reports1}">
+  		
+		    <tr>
+		      <td>${re.group}</td>
+		      <td>${re.likes}</td>
+		      <td>${re.newest}</td>
+		      <td>${re.oldest}</td>
+		    </tr>
+    	</c:forEach>
+    	
   </tbody>
 </table>
   </div>

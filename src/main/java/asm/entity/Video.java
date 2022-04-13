@@ -2,6 +2,7 @@ package asm.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedNativeQueries;
@@ -50,12 +51,25 @@ import javax.persistence.Table;
 public class Video {
 	
 	@Id
-	 String User_ID;
+	@Column(name = "Video_ID")
+	 String id;
+	
+	@Column(name = "Title")
 	 String title;
+	
+	@Column(name = "Poster")
 	 String poster;
-	 String description;
-	 boolean active;
+	
+	@Column(name = "Views")
 	 int views;
+	
+
+	@Column(name = "Active")
+	 boolean active;
+	
+	@Column(name = "Description")
+	 String description;
+	
 	
 	@OneToMany(mappedBy = "video")
 	List<Favorite> favorite;
@@ -64,19 +78,20 @@ public class Video {
 	List<Share> share;
 
 
-	public String getUser_ID() {
-		return User_ID;
-	}
-
-
-
-	public void setUser_ID(String user_ID) {
-		User_ID = user_ID;
-	}
-
-
-
 	
+	
+
+
+	public String getId() {
+		return id;
+	}
+
+
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 
 
 	public List<Favorite> getFavorite() {
