@@ -32,6 +32,9 @@ public static Map<PageType, PageInfo> pageRoute = new HashedMap();
 	
 public static void prepareAndForward(HttpServletRequest request,HttpServletResponse response,PageType pagetype) throws ServletException, IOException {
 	PageInfo page=pageRoute.get(pagetype);
+	request.setAttribute("view_menuAdmin", "/views/layout/menuAdmin.jsp");
+	request.setAttribute("view_mainbodyAdmin", "/views/layout/mainbodyAdmin.jsp");
+	request.setAttribute("view_footerAdmin", "/views/layout/footer.jsp");
 	request.setAttribute("page", page);
 	request.getRequestDispatcher("/views/main/admin/admin.jsp").forward(request,response);
 }

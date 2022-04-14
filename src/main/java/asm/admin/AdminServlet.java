@@ -62,10 +62,7 @@ public class AdminServlet extends HttpServlet {
 		request.setAttribute("items", uDao.findAll());
 		
 		
-		request.setAttribute("view_menuAdmin", "/views/layout/menuAdmin.jsp");
-		request.setAttribute("view_mainbodyAdmin", "/views/layout/mainbodyAdmin.jsp");
-		request.setAttribute("view_footerAdmin", "/views/layout/footer.jsp");
-
+		
 		PageInfo.prepareAndForward(request, response, PageType.ADMIN_PAGE);
 		
 		
@@ -176,9 +173,7 @@ public class AdminServlet extends HttpServlet {
 			request.setAttribute("items", uDao.findAll());
 			
 			
-			request.setAttribute("view_menuAdmin", "/views/layout/menuAdmin.jsp");
-			request.setAttribute("view_mainbodyAdmin", "/views/layout/mainbodyAdmin.jsp");
-			request.setAttribute("view_footerAdmin", "/views/layout/footer.jsp");
+			
 			PageInfo.prepareAndForward(request, response, PageType.ADMIN_PAGE);
 
 		} catch (Exception e) {

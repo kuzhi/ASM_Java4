@@ -56,9 +56,7 @@ public class VideosManagementServlet extends HttpServlet {
 		request.setAttribute("videos", vDao.findAll());
 		
 		
-		request.setAttribute("view_menuAdmin", "/views/layout/menuAdmin.jsp");
-		request.setAttribute("view_mainbodyAdmin", "/views/layout/mainbodyAdmin.jsp");
-		request.setAttribute("view_footerAdmin", "/views/layout/footer.jsp");
+		
 
 		PageInfo.prepareAndForward(request, response, PageType.VIDEO_MANAGEMENT_PAGE);
 	}
@@ -173,9 +171,7 @@ public class VideosManagementServlet extends HttpServlet {
 			request.setAttribute("video", video);
 			request.setAttribute("videos", vDao.findAll());
 			
-			request.setAttribute("view_menuAdmin", "/views/layout/menuAdmin.jsp");
-			request.setAttribute("view_mainbodyAdmin", "/views/layout/mainbodyAdmin.jsp");
-			request.setAttribute("view_footerAdmin", "/views/layout/footer.jsp");
+			
 			
 			PageInfo.prepareAndForward(request, response, PageType.VIDEO_MANAGEMENT_PAGE);
 		} catch (Exception e) {

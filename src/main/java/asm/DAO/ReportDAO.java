@@ -28,21 +28,26 @@ public class reportDAO {
 		
 		
 		
-		public List<Video> thongKeLuotXem(Date fromDate, Date toDate){
-			TypedQuery<Video> query = em.createQuery("SELECT o.video FROM Favorite o WHERE f.likeDate BETWEEN :min AND :max",Video.class);
-			query.setParameter("min", fromDate);
-			query.setParameter("max", toDate);
-			List<Video> list = query.getResultList();
-			return list;
-		}
+
 		
-		public List<Object[]> findVideoByName(String name) {
-			TypedQuery<Object[]> query = em.createQuery("SELECT o.video.id,o.video.title, COUNT(*) FROM Share o WHERE o.video.title LIKE :name GROUP BY o.video.id,o.video.title", Object[].class);
-			query.setParameter("name", "%"+name+"%");
-			List<Object[]> list =query.getResultList();
+	public List<Object[]> findVideoByNameUser(String videoname) {
+		TypedQuery<Object[]> query = em.createQuery("SELECT o.user.id , o.user.fullname, o.user.email, o.likeDate  "
+				+ "FROM Favorite o WHERE o.video.id LIKE :name", Object[].class);
+		query.setParameter("name", "%"+videoname+"%");
+		return query.getResultList();
+		
+
+	}
+
+	
+				
+		public List<Object[]> findVideoByNameShare(String videoname) {
+			TypedQuery<Object[]> query = em.createQuery("SELECT o.video.id,o.video.title, COUNT(*), o.shareDate FROM Share o WHERE o.video.id LIKE :name GROUP BY o.video.id,o.video.title, o.shareDate", Object[].class);
+			query.setParameter("name", "%"+videoname+"%");
+			return query.getResultList();
 			
 			
-			return list;
+			
 		}
 	
 }
