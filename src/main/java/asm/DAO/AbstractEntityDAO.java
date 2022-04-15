@@ -139,26 +139,25 @@ public abstract class AbstractEntityDAO<T> {
 		}
 	}
 	
-	public List<T> findAllVi(boolean all, int FirstResult, int maxResult) {
+	public List<T> getVideoPaging(int page) {
+		TypedQuery<T> query = em.createQuery("FROM Video ORDER BY views DESC", entityClass);
+		query.setFirstResult(page * 6);
+		query.setMaxResults(6);
+		return query.getResultList();
+	}
+	
+	public Long findAllVi() {
+		
+		
 		EntityManager em = jpaUtils.getEntityManger(); 
 		try {
-			CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-			cq.select(cq.from(entityClass));
-			Query q = em.createQuery(cq);
-			
-			if(!all) {
-				q.setFirstResult(FirstResult);
-				q.setMaxResults(maxResult);
-			}
+			TypedQuery<Long> query = em.createQuery("SELECT COUNT(*) FROM Video", Long.class);
+			return (long) Math.ceil(query.getSingleResult() / 6.0);
 					
-			List<T> a = q.getResultList();
-			
-					return a;
 					
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-			
 			
 		}	
 		finally {
@@ -166,23 +165,9 @@ public abstract class AbstractEntityDAO<T> {
 		}
 		return null;
 	}
-		public Long count() {
-			EntityManager em = jpaUtils.getEntityManger(); 
-		
-					try {
-						CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-						Root<T> rt = cq.from(entityClass);
-						cq.select(em.getCriteriaBuilder().count(rt));
-						Query q = em.createQuery(cq);
-						return (Long) q.getSingleResult();
-						
-					} catch (Exception e) {
-						// TODO: handle exception
-					}finally {
-						em.close();
-					}
-					return null;
-		}
+	
+	
+	
 		
 } 
 

@@ -11,14 +11,14 @@
         <div class="title-page__border"></div>
         <div class="title-page__item text-start col-4">
             <!-- Biến linh động -->
-            <span class="fw-bold" style="font-size: 1.2rem; color: var(--text-color);">{{tenTam}}</span>
+            <span class="fw-bold" style="font-size: 1.2rem; color: var(--text-color);">${page.title}</span>
         </div>
     </div>
     <!-- Title page -->
 </div>
 <div class="row">
     <div class="main col-12" style="padding-left: 42px;">
-     		<jsp:include page="${view}"></jsp:include>              
+     		<jsp:include page="${page.contentUrl}"></jsp:include>              
         
     </div>
 </div>

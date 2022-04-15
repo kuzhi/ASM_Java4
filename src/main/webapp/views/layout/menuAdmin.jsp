@@ -45,8 +45,7 @@
                                     <ul class="dropdown-menu list-item-user" style="margin-top: -10px;"
                                         aria-labelledby="navbarDropdownMenuLink">
                                             
-                                        <li><a class="dropdown-item" ng-click="dangXuat()" href="../index.html">Đăng xuất</a>
-                                        </li>
+                                        <li><a class="dropdown-item" href="<c:url value="/home/logout"/>">Đăng xuất</a></li>
                                     </ul>
                                 </li>
                             </div>

@@ -18,15 +18,17 @@ public static Map<PageType, PageInfo> pageRoute = new HashedMap();
 		pageRoute.put(PageType.ADMIN_PAGE, new PageInfo("Quản Trị viên","/views/main/admin/NguoiDung.jsp",null));
 		pageRoute.put(PageType.REPORT_MANAGEMENT_PAGE, new PageInfo("Báo cáo","/views/main/admin/BaoCao.jsp",null));
 		pageRoute.put(PageType.VIDEO_MANAGEMENT_PAGE, new PageInfo("Quản lý Video","/views/main/admin/TongPhim.jsp",null));
-		pageRoute.put(PageType.SITE_HOME_PAGE, new PageInfo("Home Page","/sites/home/home.jsp",null));
-		pageRoute.put(PageType.SITE_LOGIN_PAGE, new PageInfo("Login Page","/sites/users/login.jsp",null));
-		pageRoute.put(PageType.SITE_REGISTRATION_PAGE, new PageInfo("Registration","/sites/users/registration.jsp",null));
-		pageRoute.put(PageType.SITE_CHANGE_PASSWORD_PAGE, new PageInfo("Change Password","/sites/users/change-password.jsp",null));
-		pageRoute.put(PageType.SITE_FORGOT_PASSWORD_PAGE, new PageInfo("Forgot Password","/sites/users/forgot-password.jsp",null));
-		pageRoute.put(PageType.SITE_EDIT_PROFILE_PAGE, new PageInfo("Edit Profile","/sites/users/edit-profile.jsp",null));
-		pageRoute.put(PageType.SITE_FAVORITE_PAGE, new PageInfo("Favorite","/sites/videos/favorite.jsp",null));
-		pageRoute.put(PageType.SITE_SHARE_PAGE, new PageInfo("Shares","/sites/videos/share.jsp",null));
-		pageRoute.put(PageType.SITE_VIDEO_DETAIL_PAGE, new PageInfo("Video Detail","/sites/videos/detail.jsp",null));
+		pageRoute.put(PageType.SITE_HOME_PAGE, new PageInfo("Home Page","/views/main/product.jsp",null));
+		pageRoute.put(PageType.SITE_LOGIN_PAGE, new PageInfo("Login Page","/views/main/DangNhap.jsp",null));
+		pageRoute.put(PageType.SITE_REGISTRATION_PAGE, new PageInfo("Registration","/views/main/DangKy.jsp",null));
+		pageRoute.put(PageType.SITE_CHANGE_PASSWORD_PAGE, new PageInfo("Change Password","/views/main/DoiMatKhau.jsp",null));
+		pageRoute.put(PageType.SITE_FORGOT_PASSWORD_PAGE, new PageInfo("Forgot Password","/views/main/QuenMatKhau.jsp",null));
+		pageRoute.put(PageType.SITE_EDIT_PROFILE_PAGE, new PageInfo("Edit Profile","/views/main/hoSoCaNhan.jsp",null));
+		pageRoute.put(PageType.SITE_FAVORITE_PAGE, new PageInfo("Favorite","/views/main/YeuThich.jsp",null));		
+		pageRoute.put(PageType.SITE_VIDEO_DETAIL_PAGE, new PageInfo("Video Detail","/views/main/ChiTietPhim.jsp",null));
+		pageRoute.put(PageType.SITE_WATCH_VIDEO_PAGE, new PageInfo("Watch Video","/views/main/XemPhim.jsp",null));
+		pageRoute.put(PageType.SITE_ANSWER_PAGE, new PageInfo("Q&A","/views/main/hoiDap.jsp",null));
+		pageRoute.put(PageType.SITE_CONTACT_PAGE, new PageInfo("Contact","/views/main/lienHe.jsp",null));
 
 	}
 	
@@ -40,8 +42,19 @@ public static void prepareAndForward(HttpServletRequest request,HttpServletRespo
 }
 public static void prepareAndForwardSite(HttpServletRequest request,HttpServletResponse response,PageType pagetype) throws ServletException, IOException {
 	PageInfo page=pageRoute.get(pagetype);
+	
+	request.setAttribute("view_menu", "/views/layout/menu.jsp");
+	request.setAttribute("view_mainbody", "/views/layout/mainbody.jsp");
+	request.setAttribute("view_footer", "/views/layout/footer.jsp");
 	request.setAttribute("page", page);
-	request.getRequestDispatcher("/sites/layout.jsp").forward(request,response);
+	request.getRequestDispatcher("/views/index.jsp").forward(request,response);
+}
+
+public static void prepareAndForwardSites(HttpServletRequest request,HttpServletResponse response,PageType pagetype) throws ServletException, IOException {
+	PageInfo page=pageRoute.get(pagetype);
+	
+
+	request.setAttribute("page", page);
 }
 private String title;
 private String contentUrl;

@@ -62,6 +62,9 @@ public class Video {
 	
 	@Column(name = "Views")
 	 int views;
+
+	@Column(name = "Time")
+	 int time;
 	
 
 	@Column(name = "Active")
@@ -174,6 +177,18 @@ public class Video {
 
 	public void setViews(int views) {
 		this.views = views;
+	}
+
+
+
+	public int getTime() {
+		return time;
+	}
+
+
+
+	public void setTime(int time) {
+		this.time = time;
 	}
 
 

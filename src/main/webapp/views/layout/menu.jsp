@@ -3,12 +3,13 @@
     <%@taglib uri = "http://java.sun.com/jstl/core_rt" prefix ="c"%>
 	<%@taglib uri = "http://java.sun.com/jstl/fmt_rt" prefix ="fmt"%>    
 
+	<c:url var = "url" value = "/home" />
 <div class="header-wrapper">
     <div class="row">
         <nav  class="navbar  navbar-expand-lg bg-light">
             <div class="container-fluid">
                 <!-- Logo -->
-                <a class="navbar-brand"   href="${home}">
+                <a class="navbar-brand"   href="${url}/index">
                     <img src="<c:url value ="/views/img/logo.png"/>" width="60px"  height="50px" alt="">
                 </a>
                 <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,20 +20,20 @@
                     <ul class="navbar-nav me-auto" style="margin-left: 12px;">
                       
                         <li class="nav-item">
-                            <a id="list__item" class="menu-item nav-link" ng-click="trangchu()" href="#!product" >Danh mục video</a>
+                            <a id="list__item" class="menu-item nav-link"  href="${url}/product" >Danh mục video</a>
                         </li>
                         <li class="nav-item">
-                            <a id="list__item" class="menu-item nav-link" ng-click="lienHe()" href="#!contact" >Liên hệ</a>
+                            <a id="list__item" class="menu-item nav-link"  href="${url}/contact" >Liên hệ</a>
                         </li>
                         <li class="nav-item">
-                            <a id="list__item" class="menu-item nav-link" ng-click="hoiDap()" href="#!hoidap" >Hỏi đáp</a>
+                            <a id="list__item" class="menu-item nav-link"  href="${url}/answer" >Hỏi đáp</a>
                         </li>
                         
                     </ul>
                     <ul class="navbar-nav">
-						<c:if test="${!user} ">
+						
                         <!-- Chưa đăng nhập -->
-                        <div ng-if="clickLogin">
+                        <div>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#"
                                     style="color: black; font-weight: 600 !important; font-size: 1.1rem;"
@@ -42,35 +43,65 @@
                                 </a>
                                 <ul class="dropdown-menu list-item-user" style="margin-top: -10px;"
                                     aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#!login" ng-click="login()">Đăng nhập</a></li>
-                                    <li><a class="dropdown-item" href="#!signup" ng-click="signup()">Đăng ký</a></li>
-                                    <li><a class="dropdown-item" href="#!forgetPassword"
-                                            ng-click="forgetPassword()">Quên mật khẩu</a>
+                                    <li><a class="dropdown-item" href="${url}/login" >Đăng nhập</a></li>
+                                    <li><a class="dropdown-item" href="${url}/signup" >Đăng ký</a></li>
+                                    <li><a class="dropdown-item" href="${url}/forgotpass">Quên mật khẩu</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </div>
+                        
+                        
+                        <c:if test="${not (empty $sessionScope.user) }">
+                        <!-- Đã đăng nhập -->
+                        <div >
+                            <li class="nav-item dropdown d-flex">
+                                    <a id="user" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <!-- Cần thay đổi -->
+                                   Xin Chào ${user.fullname}!
+                                </a>
+                                <ul class="dropdown-menu list-item-user" style="margin-top: -10px;"
+                                    aria-labelledby="navbarDropdownMenuLink">
+                                    <li><a class="dropdown-item" href="${url}/changepass" >Đổi mật
+                                            khẩu</a></li>
+                                    <li><a class="dropdown-item" href="${url}/profile" ">Hồ sơ cá
+                                            nhân</a></li>
+                                            <li><a class="dropdown-item" href="${url}/like" ">
+                                                Yêu thích
+                                            </a></li>        
+                                    <li><a class="dropdown-item" href="${url}/logout">Đăng xuất</a>
                                     </li>
                                 </ul>
                             </li>
                         </div>
                         </c:if>
                         
-                        <c:if test="${user} ">
+                        
+                        <c:if test="${not (empty $sessionScope.user.admin)}">
                         <!-- Đã đăng nhập -->
-                        <div ng-if="!clickLogin">
+                        <div >
                             <li class="nav-item dropdown d-flex">
                                     <a id="user" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <!-- Cần thay đổi -->
-                                    {{student.username}}
+                                     Xin Chào ${user.fullname}!
                                 </a>
                                 <ul class="dropdown-menu list-item-user" style="margin-top: -10px;"
                                     aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="#!changePassword" ng-click="doiMatKhau()">Đổi mật
+                                    <li><a class="dropdown-item" href="${url}/changepass" >Đổi mật
                                             khẩu</a></li>
-                                    <li><a class="dropdown-item" href="#!hsCanhan" ng-if="!Admin" ng-click="hsCaNhan()">Hồ sơ cá
+                                    <li><a class="dropdown-item" href="${url}/profile" >Hồ sơ cá
                                             nhân</a></li>
-                                            <li><a class="dropdown-item" href="#!fav" ng-if="!Admin" ng-click="favorite()">
+                                    <li><a class="dropdown-item" href="${url}/like" >
                                                 Yêu thích
-                                            </a></li>        
-                                    <li><a class="dropdown-item" ng-click="dangXuat()" href="#!product">Đăng xuất</a>
+                                     </a></li>
+                                     <li><a class="dropdown-item" href="<c:url value="/admin/UsersManagement/index" />" >
+                                                Quản lí
+                                     </a></li>
+                                     <li><hr class="dropdown-divider"></li>
+                                                 
+                                    <li><a class="dropdown-item" href="${url}/logout">Đăng xuất</a>
                                     </li>
                                 </ul>
                             </li>
@@ -96,8 +127,8 @@
                         <div class="card-body position-absolute top-50 start-50 translate-middle">
                             <h5 class="card-title fw-1 fs-1">JOHN WICK</h5>
                             <p class="card-text fw-1 fs-1">PHIM CHIẾU RẠP BẢN ĐẸP</p>
-                            <a href="#!watchFilm"  ng-click ="xemPhim()" class="btn btn-outline-primary fw-1 fs-1">Xem video</a>
-                            <a href="#!detailFilm"  ng-click ="chiTiet()" class="btn btn-outline-primary fw-1 fs-1">Xem chi tiết</a>
+                            <a href="${url}/watchVideo?idVi=M7XM597XO94"   class="btn btn-outline-primary fw-1 fs-1">Xem video</a>
+                            <a href="${url}/detailVideo?idVi=M7XM597XO94"   class="btn btn-outline-primary fw-1 fs-1">Xem chi tiết</a>
                           </div>
                     </div>
                   </div>
@@ -109,8 +140,8 @@
                         <div class="card-body position-absolute top-50 start-50 translate-middle">
                             <h5 class="card-title fw-1 fs-1">MORTAL KOMBAT</h5>
                             <p class="card-text fw-1 fs-1">PHIM CHIẾU RẠP BẢN ĐẸP.</p>
-                            <a href="#!watchFilm" ng-click ="xemPhim()" class="btn btn-outline-primary fw-1 fs-1">Xem phim</a>
-                            <a href="#!detailFilm" ng-click ="chiTiet()" class="btn btn-outline-primary fw-1 fs-1">Xem chi tiết</a>
+                            <a href="${url}/watchVideo?idVi=Eu9G8nO5-Ug" ng-click ="xemPhim()" class="btn btn-outline-primary fw-1 fs-1">Xem phim</a>
+                            <a href="${url}/detailVideo?idVi=Eu9G8nO5-Ug"  class="btn btn-outline-primary fw-1 fs-1">Xem chi tiết</a>
                           </div>
                     </div>
                   </div>
@@ -122,8 +153,8 @@
                         <div class="card-body position-absolute top-50 start-50 translate-middle">
                             <h5 class="card-title fw-1 fs-1">SPIRITED AWAY</h5>
                             <p class="card-text fw-1 fs-1">PHIM CHIẾU RẠP BẢN ĐẸP</p>
-                            <a href="#!watchFilm" ng-click ="xemPhim()" class="btn btn-outline-primary fw-1 fs-1">Xem phim</a>
-                            <a href="#!detailFilm" ng-click ="chiTiet()" class="btn btn-outline-primary fw-1 fs-1">Xem chi tiết</a>
+                            <a href="${url}/watchVideo?idVi=QRQMNr5gQ8k" ng-click ="xemPhim()" class="btn btn-outline-primary fw-1 fs-1">Xem phim</a>
+                            <a href="${url}/detailVideo?idVi=QRQMNr5gQ8k"  class="btn btn-outline-primary fw-1 fs-1">Xem chi tiết</a>
                           </div>
                     </div>
                   </div>

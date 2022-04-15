@@ -3,25 +3,26 @@
 <%@taglib uri = "http://java.sun.com/jstl/core_rt" prefix ="c"%>
 	<%@taglib uri = "http://java.sun.com/jstl/fmt_rt" prefix ="fmt"%>      
 	
+    
     <div class="accordion" id="accordionExample">
       <div class="accordion-item">
         <h2 class="accordion-header bg-primary" id="headingOne">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              <h4>PhÃ¢n loáº¡i phim P, C13, C16, C18 lÃ  gÃ¬?</h4>
+              <h4>Phân loại phim P, C13, C16, C18 là gì?</h4>
           </button>
         </h2>
         <div id="collapseOne" class="accordion-collapse collapse show text-align-justify" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
           <div class="accordion-body">
             <p>
-              CÄn cá»© ThÃ´ng tÆ° sá» 12/2015/TT-BVHTTDL cá»§a Bá» trÆ°á»ng Bá» VÄn hÃ³a, Thá» thao vÃ  Du lá»ch cÃ³ hiá»u lá»±c thi hÃ nh tá»« ngÃ y 01/01/2017, 
-              TiÃªu chÃ­ phÃ¢n loáº¡i phim theo lá»©a tuá»i ÄÆ°á»£c quy Äá»nh nhÆ° sau:
+              Căn cứ Thông tư số 12/2015/TT-BVHTTDL của Bộ trưởng Bộ Văn hóa, Thể thao và Du lịch có hiệu lực thi hành từ ngày 01/01/2017, 
+              Tiêu chí phân loại phim theo lứa tuổi được quy định như sau:
             </p>
-            <p><strong>P:</strong> Phim ÄÆ°á»£c phÃ©p phá» biáº¿n rá»ng rÃ£i Äáº¿n má»i Äá»i tÆ°á»£ng</p>
-            <p><strong>C13:</strong> Phim cáº¥m phá» biáº¿n Äáº¿n khÃ¡n giáº£ dÆ°á»i 13 tuá»i</p>
-            <p><strong>C16:</strong> Phim cáº¥m phá» biáº¿n Äáº¿n khÃ¡n giáº£ dÆ°á»i 16 tuá»i</p>
-            <p><strong>C18:</strong> Phim cáº¥m phá» biáº¿n Äáº¿n khÃ¡n giáº£ dÆ°á»i 18 tuá»i</p>
-            <p>KhÃ¡ch hÃ ng vui lÃ²ng chá»©ng thá»±c ÄÆ°á»£c Äá» tuá»i phÃ¹ há»£p vá»i phim ÄÆ°á»£c phÃ¢n loáº¡i nhÆ° trÃªn. 
-            CGV cÃ³ quyá»n tá»« chá»i viá»c bÃ¡n vÃ© hoáº·c vÃ o phÃ²ng chiáº¿u náº¿u khÃ¡ch hÃ ng khÃ´ng tuÃ¢n thá»§ ÄÃºng theo quy Äá»nh.</p>
+            <p><strong>P:</strong> Phim được phép phổ biến rộng rãi đến mọi đối tượng</p>
+            <p><strong>C13:</strong> Phim cấm phổ biến đến khán giả dưới 13 tuổi</p>
+            <p><strong>C16:</strong> Phim cấm phổ biến đến khán giả dưới 16 tuổi</p>
+            <p><strong>C18:</strong> Phim cấm phổ biến đến khán giả dưới 18 tuổi</p>
+            <p>Khách hàng vui lòng chứng thực được độ tuổi phù hợp với phim được phân loại như trên. 
+            CGV có quyền từ chối việc bán vé hoặc vào phòng chiếu nếu khách hàng không tuân thủ đúng theo quy định.</p>
 
           </div>
         </div>
@@ -29,30 +30,30 @@
       <div class="accordion-item">
         <h2 class="accordion-header bg-primary" id="headingTwo">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              <h4>Thá»©c Än, Äá» uá»ng mua bÃªn ngoÃ i cÃ³ ÄÆ°á»£c mang vÃ o ráº¡p CGV khÃ´ng?</h4>
+              <h4>Thức ăn, đồ uống mua bên ngoài có được mang vào rạp CGV không?</h4>
           </button>
         </h2>
         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
           <div class="accordion-body">
-            <p>Äá» Äáº£m báº£o vá» sinh vÃ  an toÃ n, chá» thá»©c Än vÃ  Äá» uá»ng ÄÆ°á»£c mua táº¡i CGV má»i ÄÆ°á»£c Äem vÃ o ráº¡p chiáº¿u phim.</p>
+            <p>Để đảm bảo vệ sinh và an toàn, chỉ thức ăn và đồ uống được mua tại CGV mới được đem vào rạp chiếu phim.</p>
 
-            <p>NgoÃ i ra, báº¡n cÅ©ng khÃ´ng ÄÆ°á»£c hÃºt thuá»c, dÃ¹ng káº¹o cao su, khÃ´ng quay phim, chá»¥p hÃ¬nh, khÃ´ng ngháº¹-gá»i Äiá»n thoáº¡i, khÃ´ng nÃ³i chuyá»n trong ráº¡p chiáº¿u phim.</p>
+            <p>Ngoài ra, bạn cũng không được hút thuốc, dùng kẹo cao su, không quay phim, chụp hình, không nghẹ-gọi điện thoại, không nói chuyện trong rạp chiếu phim.</p>
             
-            <p>Táº¥t cáº£ nhá»¯ng qui Äá»nh trÃªn Äá» Äáº£m báº£o cÃ¡c báº¡n cÃ³ thá» thÆ°á»ng thá»©c phim má»t cÃ¡ch trá»n váº¹n vÃ  tuyá»t vá»i nháº¥t.</p>
+            <p>Tất cả những qui định trên để đảm bảo các bạn có thể thưởng thức phim một cách trọn vẹn và tuyệt vời nhất.</p>
           </div>
         </div>
       </div>
       <div class="accordion-item">
         <h2 class="accordion-header bg-primary" id="headingThree">
           <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              <h4>Äá»nh nghÄ©a vá» giÃ¡ vÃ© "ngÃ y trong tuáº§n" vÃ  "ngÃ y cuá»i tuáº§n" táº¡i CGV lÃ  gÃ¬?</h4>
+              <h4>Định nghĩa về giá vé "ngày trong tuần" và "ngày cuối tuần" tại CGV là gì?</h4>
           </button>
         </h2>
         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
           <div class="accordion-body">
-              <p>NgÃ y trong tuáº§n tÃ­nh tá»« thá»© 2 tá»i thá»© 5.</p>
+              <p>Ngày trong tuần tính từ thứ 2 tới thứ 5.</p>
 
-              <p>  NgÃ y cuá»i tuáº§n tÃ­nh tá»« thá»© 6 tá»i chá»§ nháº­t.
+              <p>  Ngày cuối tuần tính từ thứ 6 tới chủ nhật.
               </p>
           </div>
         </div>
@@ -60,15 +61,15 @@
       <div class="accordion-item">
           <h2 class="accordion-header bg-primary" id="heading4">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-              <h4>Tháº» quÃ  táº·ng CGV lÃ  gÃ¬ vÃ  cÃ³ giÃ¡ trá» sá»­ dá»¥ng Äáº¿n khi nÃ o?</h4>
+              <h4>Thẻ quà tặng CGV là gì và có giá trị sử dụng đến khi nào?</h4>
             </button>
           </h2>
           <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <p>Tháº» quÃ  táº·ng cÃ³ thá» ÄÆ°á»£c dÃ¹ng Äá» mua vÃ© xem phim, báº¯p nÆ°á»c táº¡i cÃ¡c ráº¡p CGV trÃªn toÃ n quá»c vÃ  cÃ³ thá» dÃ¹ng Äá» thanh toÃ¡n khi mua vÃ© trá»±c tuyáº¿n. 
-                Tháº» cÃ³ cÃ¡c má»nh giÃ¡ 300,000 VNÄ, 500,000 VNÄ hoáº·c 1,000,000. Báº¡n cÃ³ thá» mua tháº» quÃ  táº·ng táº¡i cÃ¡c ráº¡p CGV hoáº·c táº¡i website vá»i má»nh giÃ¡ tháº¥p nháº¥t lÃ  
-                300,000 VNÄ vÃ  cÃ³ giÃ¡ trá» sá»­ dá»¥ng trong vÃ²ng 1 nÄm ká» tá»« ngÃ y kÃ­ch hoáº¡t. 
-                Tháº» cÃ³ thá» náº¡p thÃªm tiá»n Äá» tiáº¿p tá»¥c sá»­ dá»¥ng vÃ  gia háº¡n.
+              <p>Thẻ quà tặng có thể được dùng để mua vé xem phim, bắp nước tại các rạp CGV trên toàn quốc và có thể dùng để thanh toán khi mua vé trực tuyến. 
+                Thẻ có các mệnh giá 300,000 VNĐ, 500,000 VNĐ hoặc 1,000,000. Bạn có thể mua thẻ quà tặng tại các rạp CGV hoặc tại website với mệnh giá thấp nhất là 
+                300,000 VNĐ và có giá trị sử dụng trong vòng 1 năm kể từ ngày kích hoạt. 
+                Thẻ có thể nạp thêm tiền để tiếp tục sử dụng và gia hạn.
               </p>
             </div>
           </div>
@@ -77,20 +78,20 @@
         <div class="accordion-item">
           <h2 class="accordion-header bg-primary" id="heading5">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-              <h4>ChÆ°Æ¡ng trÃ¬nh thÃ nh viÃªn CGV lÃ  gÃ¬?</h4>
+              <h4>Chương trình thành viên CGV là gì?</h4>
             </button>
           </h2>
           <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#accordionExample">
             <div class="accordion-body">
-              <p> ÄÃ¢y lÃ  chÆ°Æ¡ng trÃ¬nh mang Äáº¿n nhá»¯ng Æ°u ÄÃ£i Äáº·c quyá»n dÃ nh riÃªng cho thÃ nh viÃªn 
-                khi tráº£i nghiá»m dá»ch vá»¥ giáº£i trÃ­ Äiá»n áº£nh táº¡i CGV. Vá»i tÃ i khoáº£n thÃ nh viÃªn cá»§a mÃ¬nh, báº¡n cÃ³ thá»:</p>
+              <p> Đây là chương trình mang đến những ưu đãi đặc quyền dành riêng cho thành viên 
+                khi trải nghiệm dịch vụ giải trí điện ảnh tại CGV. Với tài khoản thành viên của mình, bạn có thể:</p>
                 <ul>
-                  <li>Äáº·t vÃ© vÃ  thanh toÃ¡n trá»±c tuyáº¿n.</li>
-                  <li>Nháº­n combo báº¯p nÆ°á»c/vÃ© xem phim vÃ o thÃ¡ng sinh nháº­t</li>
-                  <li>CÃ³ cÆ¡ há»i táº­n hÆ°á»ng nhá»¯ng Æ°u ÄÃ£i vÃ  quÃ  táº·ng Äáº·c biá»t.</li>
-                  <li>Nháº­n báº£n tin Äiá»n áº£nh hÃ ng tuáº§n vá» email.</li>
-                  <li>BÃ¬nh luáº­n vá» phim báº¡n yÃªu thÃ­ch táº¡i website CGV.</li>
-                  <li>Káº¿t ná»i vá»i nhá»¯ng ngÆ°á»i Äam mÃª Äiá»n áº£nh.</li>
+                  <li>Đặt vé và thanh toán trực tuyến.</li>
+                  <li>Nhận combo bắp nước/vé xem phim vào tháng sinh nhật</li>
+                  <li>Có cơ hội tận hưởng những ưu đãi và quà tặng đặc biệt.</li>
+                  <li>Nhận bản tin điện ảnh hàng tuần về email.</li>
+                  <li>Bình luận về phim bạn yêu thích tại website CGV.</li>
+                  <li>Kết nối với những người đam mê điện ảnh.</li>
                 </ul>
          
             </div>

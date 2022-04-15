@@ -92,7 +92,16 @@
                                 </div> -->
                             </div>
                                   
-                            
+                            <div class="col-md-6 col-lg-12">
+                                <label for="validationCustom02" class="form-label fw-bold text-dark">Thời lượng (phút)</label>
+                                <input type="number" class="form-control" id="validationCustom02"   name="time" value="${video.time}"   required >
+        						<c:if test="${not empty errorTime}"> 
+                                <small  class="form-text text-danger">Vui lòng nhập thời lượng</small>
+                                </c:if>
+                                <!-- <div class="valid-feedback">
+                                    Looks good!
+                                </div> -->
+                            </div>
                             <div class="col-md-6 col-lg-12">
                                 <label for="validationCustom05" class="form-label fw-bold text-dark">Active: </label>
                                 <input class="form-check-input"  type="radio" name="active" id="flexRadioDefault1"
@@ -151,6 +160,7 @@
                         <th>Video ID</th>
                         <th>Tên Video</th>
                         <th>Số view</th>
+                        <th>Thời lượng (phút)</th>
                         <th>Active</th>
                         <th>Poster</th>
                         <th></th>
@@ -161,7 +171,7 @@
 					      <td>${video.id}</td>
 					      <td>${video.title}</td>
 					      <td>${video.views}</td>
-					      
+					      <td>${video.time}</td>
 					      <c:choose>
 					      	<c:when test="${video.active==true}">
 					      		<td>Active</td>
