@@ -9,16 +9,16 @@ import javax.servlet.http.Part;
 
 public class save {
 
-	public File  save(HttpServletRequest req, String filename, String namePhoto) throws IOException, ServletException {
-		File dir = new File(req.getServletContext().getRealPath("/"+filename));
-				
+	public File  save(HttpServletRequest req, String namePhoto) throws IOException, ServletException {
+		File dir = new File(req.getServletContext().getRealPath("/views/img"));
+				System.out.println(dir);
 				if(!dir.exists()) {
 					//tao neu chua ton tai
 					dir.mkdir();
 				}
 				//luu cac file upload vao thu muc files
 				Part photo = req.getPart(namePhoto);// file hinh
-				
+
 				File photoFile = new File(dir, photo.getSubmittedFileName());
 				try {
 					photo.write(photoFile.getAbsolutePath());

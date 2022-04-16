@@ -122,7 +122,8 @@ public class AdminServlet extends HttpServlet {
 					else {
 						request.setAttribute("error", "Không có trong hệ thống");
 					}
-					
+					user= new User();
+
 				} catch (Exception e) {
 					request.setAttribute("error", "Lỗi");
 				}
@@ -141,7 +142,8 @@ public class AdminServlet extends HttpServlet {
 					else {
 						request.setAttribute("error", "Không có trong hệ thống");
 					}
-					
+					user= new User();
+
 				} catch (Exception e) {
 					request.setAttribute("error", "Lỗi");
 				}
@@ -151,7 +153,6 @@ public class AdminServlet extends HttpServlet {
 			 if(url.contains("reset")) {
 											
 						String getDate = request.getParameter("birthDay");
-						System.out.println(getDate);
 						try {	
 						if(!getDate.equalsIgnoreCase("")) {
 							user= new User();

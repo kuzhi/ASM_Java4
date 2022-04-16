@@ -49,9 +49,8 @@ public class Share {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Share(Long shardeID, User user, Video video, String email, Date shareDate) {
-		super();
-		this.shardeID = shardeID;
+	public Share( User user, Video video, String email, Date shareDate) {
+		
 		this.user = user;
 		this.video = video;
 		this.email = email;

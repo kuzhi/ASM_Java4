@@ -82,7 +82,7 @@ public class VideosManagementServlet extends HttpServlet {
 					String nameFIle = null;
 					
 					
-						 a = sav.save(request, "file", "poster");
+						 a = sav.save(request, "poster");
 						 nameFIle = a.getPath();
 							video.setPoster(a.getName());
 							video.setId(utubeID);
@@ -109,8 +109,7 @@ public class VideosManagementServlet extends HttpServlet {
 						File a ;
 						String nameFIle = null;
 						
-						
-							 a = sav.save(request, "file", "poster");
+							 a = sav.save(request, "poster");
 							 nameFIle = a.getPath();
 								video.setPoster(a.getName());
 

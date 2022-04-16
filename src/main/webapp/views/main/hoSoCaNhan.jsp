@@ -3,7 +3,9 @@
 
 <%@taglib uri = "http://java.sun.com/jstl/core_rt" prefix ="c"%>
 	<%@taglib uri = "http://java.sun.com/jstl/fmt_rt" prefix ="fmt"%>      
+   <c:url var = "url" value = "/home" />
 
+    
     <style>
         .title-header {
             border-width: 2px;
@@ -27,61 +29,67 @@
     </style>
 
     <div class="container-fluid">
+    	<div class="row">
+				<c:if test="${not empty message}">
+					<div class="alert alert-success">${message}</div>
+				</c:if>
+				<c:if test="${not empty error}">
+				
+				<div class="alert alert-danger">${error}</div>
+				</c:if>
+			</div>
         <div class="row justify-content-center">
             <div class="col">
-                <form class="row g-3 needs-validation" style="margin-top: 10px;" novalidate name="frmHS">
+                <form class="row g-3 needs-validation" style="margin-top: 10px;" novalidate name="frmHS" method="post" action="${url}/profile" enctype="multipart/form-data">
                     <div class="col-12 d-flex">
                         <div class="col-2 title-header">
-                            <label for="validationCustomUsername" class="form-label fs-6 fw-bold">Chá»nh sá»­a</label>
+                            <label for="validationCustomUsername" class="form-label fs-6 fw-bold">Hồ sơ cá nhân</label>
                         </div>
                         <div class="col-10 title-body"></div>
                     </div>
                     <div class="col-12">
                         <!-- Button trigger modal -->
-                        <button type="button" class="" style="background-color: white; border: 0;" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop">
-                            <img src="asset/img/user.jpg" width="50px" alt="" class="border border-dark rounded-circle">
-                        </button>
+                        
 
                         
                     <div class="col-md-6">
-                        <label for="validationCustom01" class="form-label fw-bold text-dark">Há» vÃ  tÃªn</label>
-                        <input type="text" class="form-control" id="validationCustom01" ng-model="student.fullname" value="{{student.fullname}}" required>
+                        <label for="validationCustom01" class="form-label fw-bold text-dark">Họ và tên</label>
+                        <input type="text" class="form-control" id="validationCustom01" name="fullname" value="${user.fullname}" required>
                         <!-- <div class="valid-feedback">
                             Looks good!
                         </div> -->
                     </div>
                     <div class="col-md-6">
-                        <label for="validationCustom02" class="form-label fw-bold text-dark">TÃªn ÄÄng nháº­p</label>
-                        <input type="text" class="form-control" id="validationCustom02" ng-model="student.username" value="{{student.username}}" readonly required>
+                        <label for="validationCustom02" class="form-label fw-bold text-dark">Tên đăng nhập</label>
+                        <input type="text" class="form-control readonly" id="validationCustom02" name="id" value="${user.id}" readonly required>
                         <!-- <div class="valid-feedback">
                             Looks good!
                         </div> -->
                     </div>
                     <div class="col-12">
                         <label for="validationCustomUsername" class="form-label fw-bold text-dark">Email</label>
-                        <input type="text" class="form-control" id="validationCustom05" ng-model="student.email" value="{{student.email}}"
+                        <input type="text" class="form-control" id="validationCustom05" name="email" value="${user.email}"
                             required>
 
                     </div>
                     <div class="col-12">
-                        <label for="validationCustom03" class="form-label fw-bold text-dark">NgÃ y sinh</label>
-                        <input type="datetime" class="form-control" id="validationCustom03" ng-model="student.birthday" value="{{student.birthday}}" required>
+                        <label for="validationCustom03" class="form-label fw-bold text-dark">Ngày sinh</label>
+                        <input type="date" class="form-control" id="validationCustom03" name="birthDay" value="${user.birthDay}" required>
                         <!-- <div class="invalid-feedback">
                             Please provide a valid city.
                         </div> -->
                     </div>
                     
                     <div class="col-12">
-                        <label for="validationCustom05" class="form-label fw-bold text-dark">Giá»i tÃ­nh: </label>
-                        <input class="form-check-input" ng-model="student.gender" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                        <label for="validationCustom05" class="form-label fw-bold text-dark">Giới tính: </label>
+                        <input class="form-check-input"  type="radio" name="gender" ${user.gender?"checked":""} id="flexRadioDefault1"
                         value="true">
                         <label class="form-check-label" for="flexRadioDefault1">
                             Nam
                         </label>
-                        <input class="form-check-input"  ng-model="student.gender" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="false">
+                        <input class="form-check-input"  type="radio" name="gender" id="flexRadioDefault2" ${user.gender?"":"checked"}>
                         <label class="form-check-label" for="flexRadioDefault2" >
-                            Ná»¯
+                            Nữ
                         </label>
 
                         <!-- <div class="invalid-feedback">
@@ -89,10 +97,12 @@
                         </div> -->
                     </div>
                     <div class="col-12">
-                        <button class="btn btn-primary" type="submit" ng-click="save()" ng-disabled="frmHS.$invalid">LÆ°u thay Äá»i</button>
+                        <button class="btn btn-primary" type="submit">Lưu thay đổi</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
+
+
 

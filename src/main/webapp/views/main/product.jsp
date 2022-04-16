@@ -12,7 +12,11 @@
         <button id="list__item" class="btn btn-outline-success float-none"  type="submit" ng-click="search()">Search</button>
     </form>
     <div class="row row-cols-auto justify-content-md-center" style="margin-top: 15px;">
+   
         <c:forEach var = "u" items="${videos}">
+        
+        
+              
         <div id="box">
             <div class="card shadow-sm text-center my-2">
             
@@ -77,8 +81,9 @@
                 
             </div>
         </div>
+        	
 		</c:forEach>
-       
+      
 
     </div>
      <!-- Button -->

@@ -10,7 +10,7 @@
             <nav  class="navbar navbar-expand-lg bg-light">
                 <div class="container-fluid">
             <!-- Logo -->
-                    <a class="navbar-brand"  ng-click="trangchu()"  href="#!user">
+                    <a class="navbar-brand"   href="${url}/UsersManagement/index">
                         <img src="<c:url value ="/views/img/logo.png"/>" width="60px"  height="50px" alt="">
                     </a>
                     <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,12 +35,12 @@
     
                             
                             <!-- Đã đăng nhập -->
-                            <div ng-if="!clickLogin">
+                            <div >
                                 <li class="nav-item dropdown d-flex">
                                         <a id="user" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
                                         <!-- Cần thay đổi -->
-                                        Admin
+                                        Xin chào ${sessionScope.user.fullname}
                                     </a>
                                     <ul class="dropdown-menu list-item-user" style="margin-top: -10px;"
                                         aria-labelledby="navbarDropdownMenuLink">

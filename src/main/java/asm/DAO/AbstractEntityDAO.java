@@ -140,7 +140,7 @@ public abstract class AbstractEntityDAO<T> {
 	}
 	
 	public List<T> getVideoPaging(int page) {
-		TypedQuery<T> query = em.createQuery("FROM Video ORDER BY views DESC", entityClass);
+		TypedQuery<T> query = em.createQuery("SELECT o FROM Video o where o.active = 1 ORDER BY views DESC", entityClass);
 		query.setFirstResult(page * 6);
 		query.setMaxResults(6);
 		return query.getResultList();
@@ -151,7 +151,7 @@ public abstract class AbstractEntityDAO<T> {
 		
 		EntityManager em = jpaUtils.getEntityManger(); 
 		try {
-			TypedQuery<Long> query = em.createQuery("SELECT COUNT(*) FROM Video", Long.class);
+			TypedQuery<Long> query = em.createQuery("SELECT COUNT(*) FROM Video v WHERE v.active = 1", Long.class);
 			return (long) Math.ceil(query.getSingleResult() / 6.0);
 					
 					

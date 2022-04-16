@@ -2,19 +2,24 @@
     pageEncoding="UTF-8"%>
 <%@taglib uri = "http://java.sun.com/jstl/core_rt" prefix ="c"%>
 	<%@taglib uri = "http://java.sun.com/jstl/fmt_rt" prefix ="fmt"%>      
+   
+   
+   <c:url var = "url" value = "/home" />
+    
+    
     
     <div class="container">
         
             <div class="row  row1 g-0 bg-light ">
                 <div class="col-lg-5 ps-0">
-                     <img src="asset/img/background_formdn.jpg" alt="logo" class="img-fluid ">
+                     <img src="<c:url  value = "/views/img/background_formdn.jpg" />" alt="logo" class="img-fluid ">
                 </div>
                 
                 <div class="col-lg-7 px-5 pt-5">
-                    <form name="frmDN">
+                    <form name="frmDN" action="${url}/login" method="post">
 
                             <h1 class="fs-2  fw-bold my-3 text-center">
-                                ÄÄNG NHáº¬P
+                                ĐĂNG NHẬP
                             </h1>
                             <h5 class="fs-5 text-center"></h5>
                             
@@ -27,11 +32,12 @@
                                         
                                     </span>
                                     <div class="form-floating col-lg-10">
-                                        <input type="text" ng-model="student.username" name="txtusername"  class="form-control " id="username" placeholder="TÃªn ÄÄng nháº­p" required>
-                                    <label for="userName">TÃªn ÄÄng nháº­p</label>
+                                        <input type="text" ng-model="student.username" name="id" value="${id}" class="form-control " id="id" placeholder="Tên đăng nhập" required>
+                                    <label for="userName">Tên đăng nhập</label>
                                 </div>
-                                <small ng-show="frmDN.txtusername.$invalid" id="username" class="form-text text-danger">Vui lÃ²ng nháº­p tÃªn ÄÄng nháº­p</small>
-    
+                                <c:if test="${not (empty errorID)}">
+                                <small  id="username" class="form-text text-danger">${errorID}</small>
+    							</c:if>
                                     </div>
                                 </div>
                             
@@ -44,20 +50,29 @@
                                         </span>
                                         <div class="form-floating col-lg-10">
 
-                                        <input type="password" ng-model="student.password" name="txtpass" id="pass" class="form-control " placeholder="Máº­t kháº©u" required>
-                                        <label for="password">Máº­t kháº©u</label>
+                                        <input type="password"  name="password" id="pass" value="${pass}" class="form-control " placeholder="Mật khẩu" required>
+                                        <label for="password">Mật khẩu</label>
 
                                         </div>
                                     </div>
-                                    <small ng-show="frmDN.txtpass.$invalid" id="pass" class="form-text text-danger">Vui lÃ²ng nháº­p máº­t kháº©u</small>
-
+                                    <c:if test="${not (empty errorPass)}">
+                                    <small  id="pass" class="form-text text-danger">${errorPass}</small>
+									</c:if>
                                 </div>
-
+							
+							<div class="form-check offset-1 mt-2 col-lg-10">
+									  <input class="form-check-input" type="checkbox"  id="flexCheckDefault" name="checkbox" >
+									  <label class="form-check-label" for="flexCheckDefault">
+									    Remember me?
+									  </label>
+									</div>
+                                
+							
                             <div class="form-row ">
 
                                 <div class="mt-2 offset-2 col-lg-7">
-                                    <button ng-click="login()" ng-disabled="frmDN.$invalid" class="btn btn-primary btn-1 align-center px-3 fs-5">
-                                        ÄÄng nháº­p
+                                    <button class="btn btn-primary btn-1 align-center px-3 fs-5">
+                                        Đăng nhập
                                     </button>
                                 </div>
                             </div>
@@ -71,6 +86,9 @@
         
       
     </div>
+
+
+    
 
 
     

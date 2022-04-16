@@ -49,7 +49,7 @@
                         <div class="row">
                         <div class="col-md-4 col-lg-5 ">
                             <div class="col border-bottom">
-                                <img src="<c:url value = "/file/${video.poster}"/>" id="image" width="700" height="400">
+                                <img src="<c:url value = "/views/img/${video.poster}"/>" id="image" width="700" height="400">
                             </div>
                            <input type="file" class="form-control" id="imageFile" name="poster" value="${video.poster}" onchange="previewFile()" 
                            accept="image/gif, image/jpeg, image/png"

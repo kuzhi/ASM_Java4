@@ -7,7 +7,7 @@
 <!-- Bootstrap -->
 <div class="container-fluid">
     <form class="d-flex">
-        <input id="list__item" class="form-control me-2"  type="text" placeholder="TÃªn phim"  ng-model="phim">
+        <input id="list__item" class="form-control me-2"  type="text" placeholder="Tên phim"  ng-model="phim">
         <button id="list__item" class="btn btn-outline-success float-none"  type="submit" ng-click="search()">Search</button>
     </form>
     <div class="row row-cols-auto justify-content-md-center" style="margin-top: 15px;">
@@ -17,12 +17,12 @@
                 <div class="card-body">
                     <div id="image" >
                         <a  href="#!quiz/{{p.Id}}/{{p.Name}}/{{p.Logo}}">
-                            <img src="asset/img/{{p.Logo}}" class="card-img-top anh" alt="áº£nh minh há»a">
+                            <img src="asset/img/{{p.Logo}}" class="card-img-top anh" alt="ảnh minh họa">
                         </a>
                     </div>
                    
                         <h5 class="card-title text-center mt-4 text-primary " >{{p.Name}}</h5>
-                        <h5 class="card-title text-center" >Thá»i lÆ°á»£ng: {{p.Time}}</h5>
+                        <h5 class="card-title text-center" >Thời lượng: {{p.Time}}</h5>
 
                     
                 </div>

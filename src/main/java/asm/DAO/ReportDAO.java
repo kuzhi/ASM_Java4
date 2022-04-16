@@ -42,11 +42,12 @@ public class reportDAO {
 	
 				
 		public List<Object[]> findVideoByNameShare(String videoname) {
-			TypedQuery<Object[]> query = em.createQuery("SELECT o.video.id,o.video.title, COUNT(*), o.shareDate FROM Share o WHERE o.video.id LIKE :name GROUP BY o.video.id,o.video.title, o.shareDate", Object[].class);
+			TypedQuery<Object[]> query = em.createQuery("SELECT o.user.fullname , o.user.email, o.email, o.shareDate FROM Share o WHERE o.video.id LIKE :name ", Object[].class);
 			query.setParameter("name", "%"+videoname+"%");
 			return query.getResultList();
 			
 			
+
 			
 		}
 	

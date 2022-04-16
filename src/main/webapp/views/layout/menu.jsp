@@ -31,7 +31,9 @@
                         
                     </ul>
                     <ul class="navbar-nav">
-						
+					<c:choose>
+					
+						<c:when test="${empty sessionScope.user}">
                         <!-- Chưa đăng nhập -->
                         <div>
                             <li class="nav-item dropdown">
@@ -39,74 +41,60 @@
                                     style="color: black; font-weight: 600 !important; font-size: 1.1rem;"
                                     id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                    Tài khoản
+                                    Tài khoản 
                                 </a>
                                 <ul class="dropdown-menu list-item-user" style="margin-top: -10px;"
                                     aria-labelledby="navbarDropdownMenuLink">
                                     <li><a class="dropdown-item" href="${url}/login" >Đăng nhập</a></li>
-                                    <li><a class="dropdown-item" href="${url}/signup" >Đăng ký</a></li>
-                                    <li><a class="dropdown-item" href="${url}/forgotpass">Quên mật khẩu</a>
+                                    <li><a class="dropdown-item" href="${url}/sign-up" >Đăng ký</a></li>
+                                    <li><a class="dropdown-item" href="${url}/forgot-password">Quên mật khẩu</a>
                                     </li>
                                 </ul>
                             </li>
                         </div>
+                        </c:when>
                         
-                        
-                        <c:if test="${not (empty $sessionScope.user) }">
+                        <c:otherwise>
+                        <c:if test="${not (empty sessionScope.user) }">
                         <!-- Đã đăng nhập -->
                         <div >
                             <li class="nav-item dropdown d-flex">
                                     <a id="user" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     <!-- Cần thay đổi -->
-                                   Xin Chào ${user.fullname}!
+                                   Xin Chào ${sessionScope.user.fullname}!
                                 </a>
                                 <ul class="dropdown-menu list-item-user" style="margin-top: -10px;"
                                     aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="${url}/changepass" >Đổi mật
+                                    <li><a class="dropdown-item" href="${url}/change-password" >Đổi mật
                                             khẩu</a></li>
                                     <li><a class="dropdown-item" href="${url}/profile" ">Hồ sơ cá
                                             nhân</a></li>
                                             <li><a class="dropdown-item" href="${url}/like" ">
                                                 Yêu thích
-                                            </a></li>        
-                                    <li><a class="dropdown-item" href="${url}/logout">Đăng xuất</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </div>
-                        </c:if>
-                        
-                        
-                        <c:if test="${not (empty $sessionScope.user.admin)}">
-                        <!-- Đã đăng nhập -->
-                        <div >
-                            <li class="nav-item dropdown d-flex">
-                                    <a id="user" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    <!-- Cần thay đổi -->
-                                     Xin Chào ${user.fullname}!
-                                </a>
-                                <ul class="dropdown-menu list-item-user" style="margin-top: -10px;"
-                                    aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a class="dropdown-item" href="${url}/changepass" >Đổi mật
-                                            khẩu</a></li>
-                                    <li><a class="dropdown-item" href="${url}/profile" >Hồ sơ cá
-                                            nhân</a></li>
-                                    <li><a class="dropdown-item" href="${url}/like" >
-                                                Yêu thích
-                                     </a></li>
-                                     <li><a class="dropdown-item" href="<c:url value="/admin/UsersManagement/index" />" >
+                                            </a></li>
+                                            <c:if test="${not (empty sessionScope.user.admin)}">
+                                            
+                                            <li><a class="dropdown-item" href="<c:url value="/admin/UsersManagement/index" />" >
                                                 Quản lí
                                      </a></li>
+                                            </c:if>
+                                     
                                      <li><hr class="dropdown-divider"></li>
-                                                 
+                                     
+                                     
+                                                    
                                     <li><a class="dropdown-item" href="${url}/logout">Đăng xuất</a>
                                     </li>
                                 </ul>
                             </li>
                         </div>
                         </c:if>
+
+                        </c:otherwise>
+                        
+                        </c:choose>	
+                        
                     </ul>
                 </div>
             </div>
