@@ -19,7 +19,9 @@ public class reportDAO {
 	
 	}
 	
-		
+	//them-vo-de-day-len-github-duoc
+
+	
 	public List<Report> thongKeLuotThich(){
 		TypedQuery<Report> query = em.createQuery("SELECT new Report(f.video.title, COUNT(f.video), MAX(f.likeDate), MIN(f.likeDate)) FROM Favorite f GROUP BY f.video.title",Report.class);
 		return query.getResultList();
