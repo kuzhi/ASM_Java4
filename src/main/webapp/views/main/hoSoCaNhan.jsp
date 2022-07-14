@@ -54,7 +54,7 @@
                         
                     <div class="col-md-6">
                         <label for="validationCustom01" class="form-label fw-bold text-dark">Họ và tên</label>
-                        <input type="text" class="form-control" id="validationCustom01" name="fullname" value="${user.fullname}" required>
+                        <input type="text" class="form-control" id="validationCustom01" name="fullname" value="${user.fullname}" required maxlength="50" pattern="\D{2,}">
                         <!-- <div class="valid-feedback">
                             Looks good!
                         </div> -->
@@ -69,26 +69,26 @@
                     <div class="col-12">
                         <label for="validationCustomUsername" class="form-label fw-bold text-dark">Email</label>
                         <input type="text" class="form-control" id="validationCustom05" name="email" value="${user.email}"
-                            required>
+                            required maxlength="50" pattern="[a-z0-9]+@[a-z0-9.-]+\.[a-z]{2,}$">
 
                     </div>
-                    <div class="col-12">
+                     <!--<div class="col-12">
                         <label for="validationCustom03" class="form-label fw-bold text-dark">Ngày sinh</label>
                         <input type="date" class="form-control" id="validationCustom03" name="birthDay" value="${user.birthDay}" required>
-                        <!-- <div class="invalid-feedback">
+                        <div class="invalid-feedback">
                             Please provide a valid city.
-                        </div> -->
-                    </div>
+                        </div> 
+                    </div>-->
                     
                     <div class="col-12">
                         <label for="validationCustom05" class="form-label fw-bold text-dark">Giới tính: </label>
                         <input class="form-check-input"  type="radio" name="gender" ${user.gender?"checked":""} id="flexRadioDefault1"
-                        value="true">
+                        value="true" required>
                         <label class="form-check-label" for="flexRadioDefault1">
                             Nam
                         </label>
                         <input class="form-check-input"  type="radio" name="gender" id="flexRadioDefault2" ${user.gender?"":"checked"}>
-                        <label class="form-check-label" for="flexRadioDefault2" >
+                        <label class="form-check-label" for="flexRadioDefault2" required>
                             Nữ
                         </label>
 

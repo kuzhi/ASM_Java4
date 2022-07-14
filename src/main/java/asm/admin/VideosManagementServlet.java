@@ -2,6 +2,8 @@ package asm.admin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -29,6 +31,8 @@ import asm.helper.save;
 	"/admin/VideoManagement/reset"})
 public class VideosManagementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private VideoDAO vDao = new VideoDAO();
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -40,21 +44,29 @@ public class VideosManagementServlet extends HttpServlet {
 		String uri = request.getRequestURI();
 
 		Video video = new Video();
-		VideoDAO vDao = new VideoDAO();
 		if(uri.contains("edit")) {
 			try {
 				//su dung substring de lay ten id
 				String id = uri.substring(uri.lastIndexOf("/") + 1);
 				video = vDao.findByID(id);
+				
+				
+				request.setAttribute("active", "openkey");
+				request.setAttribute("iduser", "openkey");
+				
+				request.setAttribute("deactive", "closekey");
 			} catch (Exception e) {
 				// TODO: handle exception
 				request.setAttribute("error", "Lỗi");
 
 			}
 		}
-		request.setAttribute("video", video);
-		request.setAttribute("videos", vDao.findAll());
 		
+		request.setAttribute("video", video);
+		 request.setAttribute("count", vDao.count());
+
+		request.setAttribute("videos", vDao.findAllVideo());
+		doVideo(request, response);
 		
 		
 
@@ -69,30 +81,61 @@ public class VideosManagementServlet extends HttpServlet {
 		try {
 			String url = request.getRequestURI();
 			Video video = new Video();
-			VideoDAO vDao = new VideoDAO();
 			save sav = new save();
+			String des = request.getParameter("description");
 			if(url.contains("create")) {
 				try {
 					getutubeID uID = new getutubeID();
 					
 					BeanUtils.populate(video, request.getParameterMap());
+					
 					String utubeID = uID.getYouTubeId(video.getId());
+					if(utubeID == null) {
+						request.setAttribute("error", "Video Id không đúng phải là đường dẫn youtube");
+
+						
+					}
+					else {
+						Video match = vDao.findByID(utubeID);
+
+						
+						 if(match != null) {
+							request.setAttribute("error", "Video Id này đã có ");
+
+							
+						}
+						 else {
+							 File a ;
+								if(request.getPart("poster").getSize() > 0) {
+									a = sav.save(request, "poster");
+									video.setPoster(a.getName());
+								}else {
+									
+									video.setPoster("No-Image.png");				
+
+								}
+								
+									 if(des !=null) {
+										 video.setId(utubeID);
+											
+											
+											vDao.insert(video);
+									
+									
+									video= new Video();
+
+									request.setAttribute("message", "Thêm thành công");
+									 }
+									 else {
+											request.setAttribute("error", "Vui lòng thêm mô tả video");
+
+									 }
+										 
+										
+						 }
+						
+					}
 					
-					File a ;
-					String nameFIle = null;
-					
-					
-						 a = sav.save(request, "poster");
-						 nameFIle = a.getPath();
-							video.setPoster(a.getName());
-							video.setId(utubeID);
-					
-					
-							vDao.insert(video);
-					
-					
-					request.setAttribute("a", nameFIle);
-					request.setAttribute("message", "Thêm thành công");
 				}
 				 catch (Exception e) {
 					request.setAttribute("error", "Lỗi");
@@ -103,24 +146,35 @@ public class VideosManagementServlet extends HttpServlet {
 				try {
 					
 					BeanUtils.populate(video, request.getParameterMap());
-					
+					Video oldVideo = vDao.findByID(video.getId());
+
+					String oldPoseter = oldVideo.getPoster();
 					if(vDao.findByID(video.getId()) != null) {
 						
+
 						File a ;
-						String nameFIle = null;
 						
-							 a = sav.save(request, "poster");
-							 nameFIle = a.getPath();
+						if(request.getPart("poster").getSize() == 0) {
+							video.setPoster(oldPoseter);				
+						}else {
+							a = sav.save(request, "poster");
 								video.setPoster(a.getName());
+							
+						}
 
+						if(des != null) {
+							vDao.update(video);
+							
+							
+							request.setAttribute("video", video);
+							
+							request.setAttribute("message", "Cập nhật thành công");
+						}
 						
-						
-						vDao.update(video);
-						
-						
-						request.setAttribute("a", nameFIle);
+						else {
+							request.setAttribute("error", "Vui lòng thêm mô tả video");
 
-						request.setAttribute("message", "Cập nhật thành công");
+					 }
 					}
 					else {
 						request.setAttribute("error", "Không có trong hệ thống");
@@ -143,6 +197,8 @@ public class VideosManagementServlet extends HttpServlet {
 					if(vDao.findByID(video.getId()) != null) {
 						vDao.delete(video.getId());
 						request.setAttribute("message", "Xóa thành công");
+						video= new Video();
+
 					}
 					else {
 						request.setAttribute("error", "Không có trong hệ thống");
@@ -167,8 +223,10 @@ public class VideosManagementServlet extends HttpServlet {
 				
 		}
 			
-			request.setAttribute("video", video);
-			request.setAttribute("videos", vDao.findAll());
+			 request.setAttribute("count", vDao.count());
+
+				request.setAttribute("videos", vDao.findAllVideo());
+				doVideo(request, response);
 			
 			
 			
@@ -181,5 +239,28 @@ public class VideosManagementServlet extends HttpServlet {
 		}
 	}
 	
-	
+	protected void doVideo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		try {
+			int page = 0;
+			try {
+				page = Integer.parseInt(request.getParameter("page")) - 1;
+			} catch (Exception ex) {
+				page = 0;
+			}
+			request.setAttribute("videos", getVideo(1));
+			request.setAttribute("videos", getVideo(page));
+			request.setAttribute("currentPage", page + 1);
+			request.setAttribute("maxPage", vDao.findAllVideo());
+			
+		} catch (Exception e) {
+				e.printStackTrace();
+				
+		}
+		
+		
+	}
+	public List<Video> getVideo(int page) {
+		return vDao.getPagingVid(page);
+	}
 }

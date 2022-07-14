@@ -45,7 +45,7 @@ public class ProfileServlet extends HttpServlet {
 		 
 		 User a = uDao.findByID(u.getId());
 		 if(a !=null) {
-			 doBirthDay(request, response, false, u.getBirthDay());
+			 //doBirthDay(request, response, false, u.getBirthDay());
 				request.setAttribute("user", a);
 		 }
 		
@@ -61,7 +61,7 @@ public class ProfileServlet extends HttpServlet {
 		try {
 			
 			
-			doBirthDay(request, response, true, null);
+			//doBirthDay(request, response, true, null);
 			
 			
 			BeanUtils.populate(u, request.getParameterMap());

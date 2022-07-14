@@ -36,13 +36,10 @@
                                         <i class="fas fa-user" style="width:16px; height:16px;"> </i>
                                     </span>
                                     
-                                    <input type="text"  name="id"  class="form-control "  placeholder="Tên đăng nhập" required >
+                                    <input type="text"  name="id"  class="form-control "  placeholder="Tên đăng nhập" required minlength="3" maxlength="20" >
                                     
                                     </div>
-                                    <!--
-                                    <small ng-show="frmDK.txtUsername.$error.required" class="form-text text-danger">Vui lòng nhập tên đăng nhập</small>
-                                    <small ng-show="frmDK.txtUsername.$error.minlength" class="form-text text-danger">Tên đăng nhập phải hơn hoặc bằng5 kí tự</small>
-                                     -->
+                                   
                                 </div>
                             
                                 <div class="offset-1 col-lg-10">
@@ -51,7 +48,7 @@
                                             <i class="fas fa-envelope" style="width:16px; height:16px;"> </i>
                                                             
                                         </span>
-                                        <input type="email"  name="email"  class="form-control " placeholder="VD: khoa@gmail.com" required pattern="[a-z0-9]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                                        <input type="email"  name="email"  class="form-control " placeholder="VD: khoa@gmail.com" required maxlength="50" pattern="[a-z0-9]+@[a-z0-9.-]+\.[a-z]{2,}$">
                                         
                                         
                                     </div>
@@ -67,7 +64,7 @@
                                             <i class="fas fa-user" style="width:16px; height:16px;"> </i>
                                                             
                                         </span>
-                                        <input type="text"  name="fullname"  class="form-control " placeholder="Họ và tên" required pattern="\D{2,}">
+                                        <input type="text"  name="fullname"  class="form-control " placeholder="Họ và tên" required maxlength="50" pattern="\D{2,}">
                                         
                                         
                                     </div>
@@ -123,7 +120,7 @@
                                             <i class="fas fa-lock" style="width:16px; height:16px;"> </i>
                                                             
                                         </span>
-                                        <input type="password"  name="password"  class="form-control " placeholder="Mật khẩu" required minlength="5" maxlength="25" >
+                                        <input type="password"  name="password"  class="form-control " placeholder="Mật khẩu" required minlength="5" maxlength="10" >
                                         
 
                                     </div>

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,6 +23,7 @@ import asm.common.PageInfo;
 import asm.common.PageType;
 import asm.entity.User;
 import asm.jpa.CookieUtils;
+import asm.jpa.SendMail;
 import asm.jpa.SessionUtils;
 
 /**
@@ -31,6 +33,8 @@ import asm.jpa.SessionUtils;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private UserDAO uDao = new UserDAO();   
+    private SendMail sendMail = new SendMail();
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -41,7 +45,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String checkbox = request.getParameter("checkbox");
 		
 		String uri = request.getRequestURI();
 		String id = CookieUtils.get("id", request);
@@ -122,10 +125,11 @@ public class LoginServlet extends HttpServlet {
 			user = uDao.findByID(id);
 			if(user!=null) {
 				if((user.getPassword().trim()).equalsIgnoreCase(pass)) {
+
 					request.getSession().setAttribute("user", user);
 					if(remember != null) {
-						CookieUtils.add("id", id, 5, response);
-						CookieUtils.add("pass", pass, 5, response);
+						CookieUtils.add("id", id, 24, response);
+						CookieUtils.add("pass", pass, 24, response);
 
 					}
 					
@@ -178,14 +182,14 @@ public class LoginServlet extends HttpServlet {
 		
 		if(oldpass.equalsIgnoreCase("")) {
 
-			request.setAttribute("errorOldpass", "Vui lòng nhập tên đăng nhập");
+			request.setAttribute("errorOldpass", "Vui lòng nhập mật khẩu cũ");
 			PageInfo.prepareAndForwardSite(request, response, PageType.SITE_CHANGE_PASSWORD_PAGE);
 
 			return;
 		}
 		else if(newpass.equalsIgnoreCase("")){
 
-			request.setAttribute("errorNewpass", "Vui lòng nhập mật khẩu");
+			request.setAttribute("errorNewpass", "Vui lòng nhập mật khẩu mới");
 			PageInfo.prepareAndForwardSite(request, response, PageType.SITE_CHANGE_PASSWORD_PAGE);
 
 			return;
@@ -243,7 +247,13 @@ public class LoginServlet extends HttpServlet {
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		String pass = request.getParameter("password");
 		String rePass = request.getParameter("repassword");
+		String id = request.getParameter("id");
+		String email = request.getParameter("email");
+		
+		Boolean idMatch = false;
+		Boolean emailMatch = false;
 
+		
 		String getBirh = request.getParameter("birthDay");
 		if(getBirh.equals("")) {
 			request.setAttribute("error", "Vui lòng điền trường ngày sinh");
@@ -258,27 +268,66 @@ public class LoginServlet extends HttpServlet {
 		dtc.setPattern("dd/mm/yyyy");
 		ConvertUtils.register(dtc, Date.class);
 		}
+		//chay vong lap de kiem tra xem co trung khong
+			
+		List<User> list = uDao.findAll();
+		
+		for(User u : list) {
+			if(id.equalsIgnoreCase(u.getId().trim()))
+				{
+				idMatch=true;
+				
+			}
+			if(email.equalsIgnoreCase(u.getEmail())) {
+				emailMatch = true;
+			}
+		}
+		
+		///
 		User user = new User();	
 		
 		UserDAO uDao = new UserDAO();
 
 		user.setAdmin(false);
 		
-		if(rePass.equals(pass)) {
-			try {
-				BeanUtils.populate(user, request.getParameterMap());
-				uDao.insert(user);
-				request.setAttribute("message", "Đăng ký thành công");
-			}
-			 catch (Exception e) {
-				 e.printStackTrace();
-				request.setAttribute("error", "Lỗi");
-			}
-		}
-		else {
-			request.setAttribute("error", "Mật khẩu và xác nhận mật khẩu không trùng nhau");
+		
+			//kiem tra trung
+			if(idMatch==false ) {
+				if(emailMatch ==false) {
+					if(rePass.equals(pass)) {
+					try {
+						BeanUtils.populate(user, request.getParameterMap());
+						uDao.insert(user);
+						sendMail.doSendmailCongra(request, response,user);
+						request.setAttribute("message", "Đăng ký thành công");
+						
+						
+					}
+					 catch (Exception e) {
+						 e.printStackTrace();
+						request.setAttribute("error", "Lỗi");
+					}
+				}
+					
+					else {
+						request.setAttribute("error", "Mật khẩu và xác nhận mật khẩu không trùng nhau");
 
-		}
+					}	
+				
+				
+			}
+				
+				else {
+					request.setAttribute("error", "Email này đã được sử dụng");
+
+				}			
+			
+			}
+			else {
+				request.setAttribute("error", "Tài khoản đã được sử dụng");
+
+			}	
+		
 		
 			
 		

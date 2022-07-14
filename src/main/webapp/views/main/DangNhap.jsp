@@ -32,7 +32,7 @@
                                         
                                     </span>
                                     <div class="form-floating col-lg-10">
-                                        <input type="text" ng-model="student.username" name="id" value="${id}" class="form-control " id="id" placeholder="Tên đăng nhập" required>
+                                        <input type="text"  name="id" value="${id}" class="form-control " id="id" placeholder="Tên đăng nhập" required>
                                     <label for="userName">Tên đăng nhập</label>
                                 </div>
                                 <c:if test="${not (empty errorID)}">

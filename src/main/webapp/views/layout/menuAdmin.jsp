@@ -6,11 +6,12 @@
 
 <div class="header-wrapper">
 	<c:url var ="url" value="/admin" />
+	<c:url var ="urlHome" value="/home" />
     <div class="row">
             <nav  class="navbar navbar-expand-lg bg-light">
                 <div class="container-fluid">
             <!-- Logo -->
-                    <a class="navbar-brand"   href="${url}/UsersManagement/index">
+                    <a class="navbar-brand"   href="${urlHome}/index">
                         <img src="<c:url value ="/views/img/logo.png"/>" width="60px"  height="50px" alt="">
                     </a>
                     <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,6 +29,9 @@
                             </li>
                             <li class="nav-item">
                                 <a id="list__item" class="menu-item nav-link"  href="${url}/Report/index" >Báo cáo</a>
+                            </li>
+                            <li class="nav-item">
+                                <a id="list__item" class="menu-item nav-link"  href="<c:url value="/home/index"/>" >Trang chủ</a>
                             </li>
                             
                         </ul>

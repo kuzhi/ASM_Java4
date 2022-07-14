@@ -41,6 +41,10 @@
 </head>
 
 <body>
+	<div class="loader_bg">
+    	<div class="loader"></div>
+	</div>
+
     <div  class="container-fluid" >
         <header id="header" class="header ">
            <div>
@@ -72,7 +76,12 @@
     
     
     <!--AnguScript cac file-->
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        setTimeout(function(){
+            $('.loader_bg').fadeToggle();
+        }, 1500);
+    </script>
 
 </body>
 </html>

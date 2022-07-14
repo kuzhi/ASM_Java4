@@ -11,7 +11,7 @@
         
             <div class="row g-0 bg-light ">
                 <div class="col-lg-5 ps-0">
-                     <img src=""<c:url  value = "/views/img/background_formdn.jpg"/>" alt="logo" class="img-fluid ">
+                     <img src="<c:url  value = "/views/img/background_formdn.jpg"/>" alt="logo" class="img-fluid ">
                 </div>
                 
                 <div class="col-lg-7 px-5 pt-5">
@@ -38,7 +38,7 @@
                                         <label for="email">Nhập địa chỉ email của bạn</label>
 
                                     </div>
-                                    <small class="form-text text-danger">Vui lòng nhập địa chỉ email</small>
+                                     
                                 </div>
                                 
                            
@@ -56,7 +56,7 @@
                                             <label for="text">Tên đăng nhập</label>
     
                                             </div>
-                                            <small  class="form-text text-danger">Vui lòng nhập tên đăng nhập</small>
+                                           
 
                                         </div>
                                     </div>
@@ -69,6 +69,9 @@
                                             Lấy lại
                                         </button>
                                     </div>
+                                     <c:if test="${not (empty errordnID)}">
+                                			<small  class="mt-2 text-center form-text text-danger">${errordnID}</small>
+    								</c:if>
                                 </div>
                      		</form>
  

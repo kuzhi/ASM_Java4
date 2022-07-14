@@ -34,7 +34,13 @@ public abstract class AbstractEntityDAO<T> {
 	
 	}
 	
-	
+	protected EntityManager emIsopen() {
+		if(!em.isOpen()) {
+			 em = jpaUtils.getEntityManger();
+
+		}
+		return em;
+	}
 	public AbstractEntityDAO(Class<T> entity) {
 		this.entityClass = entity;
 		// TODO Auto-generated constructor stub
@@ -42,8 +48,7 @@ public abstract class AbstractEntityDAO<T> {
 
 
 	public void insert(T entity) {
-		EntityManager em = jpaUtils.getEntityManger();
-
+		emIsopen();
 		try {
 			em.getTransaction().begin();
 			
@@ -63,6 +68,8 @@ public abstract class AbstractEntityDAO<T> {
 	}
 	
 	public void update(T entity) {
+		emIsopen();
+
 		try {
 			em.getTransaction().begin();
 			
@@ -81,7 +88,8 @@ public abstract class AbstractEntityDAO<T> {
 	
 	
 	public T delete(String id) {
-		
+		emIsopen();
+
 		 T entity = null; 
 		try {
 			em.getTransaction().begin();
@@ -105,9 +113,10 @@ public abstract class AbstractEntityDAO<T> {
 	}
 	
 	public T findByID(String id) {
-		
+		emIsopen();
+
 		T entity = null;
-		
+
 		try {
 			em.getTransaction().begin();
 
@@ -127,7 +136,8 @@ public abstract class AbstractEntityDAO<T> {
 	
 	
 	public List<T> findAll() {
-		
+		emIsopen();
+
 		
 		EntityManager em = jpaUtils.getEntityManger();
 		try {
@@ -140,18 +150,137 @@ public abstract class AbstractEntityDAO<T> {
 	}
 	
 	public List<T> getVideoPaging(int page) {
+		emIsopen();
+
+		try {
+
 		TypedQuery<T> query = em.createQuery("SELECT o FROM Video o where o.active = 1 ORDER BY views DESC", entityClass);
 		query.setFirstResult(page * 6);
 		query.setMaxResults(6);
 		return query.getResultList();
+		} finally {
+			em.close();
+		}
 	}
 	
-	public Long findAllVi() {
-		
-		
-		EntityManager em = jpaUtils.getEntityManger(); 
+	
+	public List<T> getPagingVidFav(int page, String userId) {
+		emIsopen();
+
 		try {
-			TypedQuery<Long> query = em.createQuery("SELECT COUNT(*) FROM Video v WHERE v.active = 1", Long.class);
+
+		TypedQuery<T> query = em.createQuery("SELECT o FROM Favorite o WHERE o.user.id LIKE :uId", entityClass);
+		query.setParameter("uId", "%"+userId+"%");
+
+		query.setFirstResult(page * 6);
+		query.setMaxResults(6);
+		return query.getResultList();
+		} finally {
+			em.close();
+		}
+	}
+	
+	
+	
+	public List<T> getPagingVid(int page) {
+		emIsopen();
+
+		try {
+
+		TypedQuery<T> query = em.createQuery("SELECT o FROM Video o ORDER BY o.id ASC", entityClass);
+		query.setFirstResult(page * 10);
+		query.setMaxResults(10);
+		return query.getResultList();
+		} finally {
+			em.close();
+		}
+	}
+	
+	public List<T> getPaging(int page) {
+		emIsopen();
+
+		try {
+
+		TypedQuery<T> query = em.createQuery("SELECT o FROM User o ORDER BY o.id ASC", entityClass);
+		query.setFirstResult(page * 10);
+		query.setMaxResults(10);
+		return query.getResultList();
+		} finally {
+			em.close();
+		}
+	}
+	
+	public Long findAllUser() {
+		
+		
+		emIsopen();
+		try {
+			TypedQuery<Long> query = em.createQuery("SELECT COUNT(*) FROM User", Long.class);
+			return (long) Math.ceil(query.getSingleResult() / 10.0);
+					
+					
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			
+		}	
+		finally {
+			em.close();
+		}
+		return null;
+	}
+	
+	public Long findAllVideo() {
+		emIsopen();
+
+			
+			try {
+				TypedQuery<Long> query = em.createQuery("SELECT COUNT(*) FROM Video", Long.class);
+				return (long) Math.ceil(query.getSingleResult() / 10.0);
+						
+						
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				
+			}	
+			finally {
+				em.close();
+			}
+			return null;
+		}
+	
+	
+	
+	
+	public Long findAllVi() {
+		emIsopen();
+
+		
+		try {
+			TypedQuery<Long> query = em.createQuery("SELECT COUNT(*) FROM Video v WHERE v.active = 1" , Long.class);
+			return (long) Math.ceil(query.getSingleResult() / 6.0);
+					
+					
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			
+		}	
+		finally {
+			em.close();
+		}
+		return null;
+	}
+	
+public Long findAllViFav(String userId) {
+		
+	emIsopen();
+
+		try {
+			TypedQuery<Long> query = em.createQuery("SELECT COUNT(*) FROM Favorite f WHERE f.user.id LIKE :idU", Long.class);
+			query.setParameter("idU", "%"+userId+"%");
+
 			return (long) Math.ceil(query.getSingleResult() / 6.0);
 					
 					
@@ -167,6 +296,20 @@ public abstract class AbstractEntityDAO<T> {
 	}
 	
 	
+	public Long count() {
+		emIsopen();
+
+		try {
+			CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+			Root<T> rt = cq.from(entityClass);
+			cq.select(em.getCriteriaBuilder().count(rt));
+			Query q = em.createQuery(cq);
+			return (Long) q.getSingleResult();
+		} finally {
+			em.close();
+		}
+
+	}
 	
 		
 } 

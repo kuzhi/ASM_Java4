@@ -4,6 +4,8 @@
 	<%@taglib uri = "http://java.sun.com/jstl/fmt_rt" prefix ="fmt"%>    
 
 	<c:url var = "url" value = "/home" />
+	<c:url var = "urlAdmin" value = "/admin/UsersManagement/" />
+	
 <div class="header-wrapper">
     <div class="row">
         <nav  class="navbar  navbar-expand-lg bg-light">
@@ -28,8 +30,18 @@
                         <li class="nav-item">
                             <a id="list__item" class="menu-item nav-link"  href="${url}/answer" >Hỏi đáp</a>
                         </li>
+                       
                         
                     </ul>
+                 
+                    	<c:if test="${not empty errorSearch}">                   
+                    	 <small class="alert alert-danger me-2"> ${errorSearch}</small>
+                    	 </c:if>
+                     	<form class="d-flex" method="post" action="${url}/search">
+        						<input name="titleVideo" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" required>
+        						<button class="btn btn-outline-success" type="submit">Search</button>
+      					</form>
+      					
                     <ul class="navbar-nav">
 					<c:choose>
 					
@@ -68,16 +80,16 @@
                                     aria-labelledby="navbarDropdownMenuLink">
                                     <li><a class="dropdown-item" href="${url}/change-password" >Đổi mật
                                             khẩu</a></li>
-                                    <li><a class="dropdown-item" href="${url}/profile" ">Hồ sơ cá
+                                    <li><a class="dropdown-item" href="${url}/profile" >Hồ sơ cá
                                             nhân</a></li>
-                                            <li><a class="dropdown-item" href="${url}/like" ">
+                                            <li><a class="dropdown-item" href="${url}/QLlike" >
                                                 Yêu thích
                                             </a></li>
-                                            <c:if test="${not (empty sessionScope.user.admin)}">
+                                            <c:if test="${sessionScope.user.admin==true}">
                                             
-                                            <li><a class="dropdown-item" href="<c:url value="/admin/UsersManagement/index" />" >
+                                            <li><a class="dropdown-item" href="${urlAdmin}/index" >
                                                 Quản lí
-                                     </a></li>
+                                    		 </a></li>
                                             </c:if>
                                      
                                      <li><hr class="dropdown-divider"></li>
@@ -96,9 +108,13 @@
                         </c:choose>	
                         
                     </ul>
+                   
                 </div>
+                
             </div>
+            
         </nav>
+        
     </div>
     <div class="row header-banner">
         <div id="carouselExampleControls" class="mb-2 carousel slide auto" data-bs-ride="carousel" width="800">
@@ -128,7 +144,7 @@
                         <div class="card-body position-absolute top-50 start-50 translate-middle">
                             <h5 class="card-title fw-1 fs-1">MORTAL KOMBAT</h5>
                             <p class="card-text fw-1 fs-1">PHIM CHIẾU RẠP BẢN ĐẸP.</p>
-                            <a href="${url}/watchVideo?idVi=Eu9G8nO5-Ug" ng-click ="xemPhim()" class="btn btn-outline-primary fw-1 fs-1">Xem phim</a>
+                            <a href="${url}/watchVideo?idVi=Eu9G8nO5-Ug"  class="btn btn-outline-primary fw-1 fs-1">Xem video</a>
                             <a href="${url}/detailVideo?idVi=Eu9G8nO5-Ug"  class="btn btn-outline-primary fw-1 fs-1">Xem chi tiết</a>
                           </div>
                     </div>
@@ -141,7 +157,7 @@
                         <div class="card-body position-absolute top-50 start-50 translate-middle">
                             <h5 class="card-title fw-1 fs-1">SPIRITED AWAY</h5>
                             <p class="card-text fw-1 fs-1">PHIM CHIẾU RẠP BẢN ĐẸP</p>
-                            <a href="${url}/watchVideo?idVi=QRQMNr5gQ8k" ng-click ="xemPhim()" class="btn btn-outline-primary fw-1 fs-1">Xem phim</a>
+                            <a href="${url}/watchVideo?idVi=QRQMNr5gQ8k"class="btn btn-outline-primary fw-1 fs-1">Xem video</a>
                             <a href="${url}/detailVideo?idVi=QRQMNr5gQ8k"  class="btn btn-outline-primary fw-1 fs-1">Xem chi tiết</a>
                           </div>
                     </div>

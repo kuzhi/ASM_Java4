@@ -51,19 +51,15 @@
                             <div class="col border-bottom">
                                 <img src="<c:url value = "/views/img/${video.poster}"/>" id="image" width="700" height="400">
                             </div>
-                           <input type="file" class="form-control" id="imageFile" name="poster" value="${video.poster}" onchange="previewFile()" 
-                           accept="image/gif, image/jpeg, image/png"
-                           >
+                           <input type="file" class="form-control" id="imageFile" name="poster"  onchange="previewFile()" >
                             
                         </div>
                         <div class="col-md-7 col-lg-7 p-2">
                             <div class="col-md-6 col-lg-12">
                                 <label for="validationCustom01" class="form-label fw-bold text-dark">Video_ID</label>
-                                <input type="text" class="form-control" id="validationCustom01" name="id" value="${video.id}"  >
+                                <input type="text" class="form-control" id="validationCustom01" name="id" <c:if test="${not(empty iduser)}" >readonly</c:if> value="${video.id}" required >
                                 
-                                <c:if test="${not empty errorId}">                            
-                          		<small class="form-text text-danger">Vui lòng nhập id</small>
-                          		</c:if>
+                              
                           		
                                 <!-- <div class="valid-feedback">
                                     Looks good!
@@ -71,22 +67,17 @@
                             </div>
                             <div class="col-md-6 col-lg-12">
                                 <label for="validationCustom02" class="form-label fw-bold text-dark">Tên Video</label>
-                                <input type="text" class="form-control" id="validationCustom02"   name="title" value="${video.title}"  required minlength="1">
+                                <input type="text" class="form-control" id="validationCustom02"   name="title" value="${video.title}"  required minlength="1" maxlength="50">
         						
-        						<c:if test="${not empty errorVideo}">                            
-        							
-                                <small class="form-text text-danger">Vui lòng nhập tên video</small>
-                                </c:if>
+        						
                                 <!-- <div class="valid-feedback">
                                     Looks good!
                                 </div> -->
                             </div>
                             <div class="col-md-6 col-lg-12">
                                 <label for="validationCustom02" class="form-label fw-bold text-dark">Số view</label>
-                                <input type="number" class="form-control" id="validationCustom02"   name="views" value="${video.views}"   required >
-        						<c:if test="${not empty errorView}"> 
-                                <small  class="form-text text-danger">Vui lòng nhập số view</small>
-                                </c:if>
+                                <input type="number" class="form-control" id="validationCustom02"   name="views" value="${video.views}" step="1" min="0"  required >
+        						
                                 <!-- <div class="valid-feedback">
                                     Looks good!
                                 </div> -->
@@ -94,10 +85,8 @@
                                   
                             <div class="col-md-6 col-lg-12">
                                 <label for="validationCustom02" class="form-label fw-bold text-dark">Thời lượng (phút)</label>
-                                <input type="number" class="form-control" id="validationCustom02"   name="time" value="${video.time}"   required >
-        						<c:if test="${not empty errorTime}"> 
-                                <small  class="form-text text-danger">Vui lòng nhập thời lượng</small>
-                                </c:if>
+                                <input type="number" class="form-control" id="validationCustom02"   name="time" value="${video.time}" step="1" min="1" required pattern="/W">
+        						
                                 <!-- <div class="valid-feedback">
                                     Looks good!
                                 </div> -->
@@ -114,9 +103,7 @@
                                     Inactive
                                 </label>
                                 <div>
-                                	<c:if test="${not empty errorActive}">
-                                    <small  class="form-text text-danger">Vui lòng chọn active hay inactive</small>
-                                    </c:if>
+                                	
                                 </div>
                                 <!-- <div class="invalid-feedback">
                                     Please provide a valid zip.
@@ -127,14 +114,12 @@
                         <div class="col-md-6 col-lg-12">
                             <label for="validationCustom03" class="form-label fw-bold text-dark">Mô tả video</label>
                             <div>
-                                <textarea class="form-control fw-2" placeholder="Leave a comment here" id="floatingTextarea2" name="description" style="height: 100px" value="${video.description}" required>
+                                <textarea class="form-control fw-2" placeholder="Leave a comment here" id="floatingTextarea2" name="description" style="height: 100px"  required>
                                 ${video.description}
                                 </textarea>
                               </div>
                                
-                               <c:if test="${not empty errorDes}"> 
-                              	<small  class="form-text text-danger">Vui lòng nhập mô tả phim</small>                                                                    
-                            	</c:if>
+                              
                             <!-- <div class="invalid-feedback">
                                 Please provide a valid city.
                             </div> -->
@@ -144,9 +129,9 @@
                     </div>
                 
                     <div class="col-12 mt-3">
-                         <button class="btn btn-outline-primary me-3" type="submit" formaction="${url}/create">Thêm mới</button>
-                        <button class="btn btn-outline-success me-3" type="submit"  formaction="${url}/update">Lưu thay đổi</button>
-                        <button class="btn btn-outline-danger me-3" type="submit"  formaction="${url}/delete">Xóa</button>
+                         <button class="btn btn-outline-primary me-3" type="submit" <c:if test="${not(empty deactive)}" >disabled</c:if>  formaction="${url}/create">Thêm mới</button>
+                        <button class="btn btn-outline-success me-3" type="submit" <c:if test="${empty active}" >disabled</c:if> formaction="${url}/update">Lưu thay đổi</button>
+                        <button class="btn btn-outline-danger me-3" type="submit" <c:if test="${empty active}" >disabled</c:if> formaction="${url}/delete">Xóa</button>
                         <button class="btn btn-outline-secondary me-3" type="submit"  formaction="${url}/reset">Reset</button>
 
                     </div>
@@ -181,11 +166,41 @@
 					      	</c:when>	
 					      </c:choose>
 					      
-					      <td>${video.poster}</td>
+					      <td>
+
+						 <img src="<c:url value = "/views/img/${video.poster}"/>"  width="200" height="200">
+						
+							</td>
 					      <td><a href="${url}/edit/${video.id}" class="text-decoration-none">Edit</a></td>
 					    </tr>
 			   		</c:forEach>
                 </table>
+            </div>
+            <div class="row bg-light">
+            	<div class="col-lg-7 d-flex flex-column">
+            	<div class="p-2"></div>
+            	<p >${count} videos</p>
+            	
+            	</div>
+            	
+            	<div class="col-lg-5">
+					<div class="row  float-none" style="margin-top: 10px;">
+		  				<ul class="pagination d-flex justify-content-center">
+				  		    <li class="page-item"><a href="${url}/index?page=1" class="page-link"  >First</a></li>
+				  		  	<li class="page-item <c:if test="${currentPage == 1}">disabled</c:if>"><a href="${url}/index?page=${currentPage-1}"  class="page-link"  >Previous</a></li>
+		  
+						  	<c:forEach varStatus="i" begin="1" end="${maxPage}" step="1">
+						    <li class="page-item ${currentPage== i.index? 'active':''}"><a href="${url}/index?page=${i.index}" 
+						    	class=" page-link "  >${i.index}</a></li>
+						   </c:forEach>
+						   
+		   		  			<li class="page-item <c:if test="${currentPage == maxPage}">disabled</c:if>"><a href="${url}/index?page=${currentPage+1}"  class="page-link"  >Next</a></li>
+		   
+		    				<li class="page-item"><a href="${url}/index?page=${maxPage}"  class="page-link"  >Last</a></li>
+		  				</ul>
+    				</div>
+
+				</div>
             </div>
             </div>
         </div>

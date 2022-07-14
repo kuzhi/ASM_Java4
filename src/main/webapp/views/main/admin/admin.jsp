@@ -29,22 +29,6 @@
    
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <script type="text/javascript">
-    	function previewFile() {
-    	  const preview = document.querySelector('#image');
-    	  const file = document.querySelector('input[type=file]').files[0];
-    	  const reader = new FileReader();
-
-    	  reader.addEventListener("load", function () {
-    	    // convert image file to base64 string
-    	    preview.src = reader.result;
-    	  }, false);
-
-    	  if (file) {
-    	    reader.readAsDataURL(file);
-    	  }
-    	}
-	</script>
     
     
     <style>
@@ -55,6 +39,11 @@
 </head>
        
 <body >
+	
+		<div class="loader_bg">
+    		<div class="loader"></div>
+		</div>
+
     <div id="wrapper" class="container-fluid" >
         <header id="header" class="header">
 			<jsp:include page="${view_menuAdmin}"/>
@@ -83,6 +72,26 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
 
     <!--AnguScript cac file-->
-   
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    function previewFile() {
+  	  const preview = document.querySelector('#image');
+  	  const file = document.querySelector('input[type=file]').files[0];
+  	  const reader = new FileReader();
+
+  	  reader.addEventListener("load", function () {
+  	    // convert image file to base64 string
+  	    preview.src = reader.result;
+  	  }, false);
+
+  	  if (file) {
+  	    reader.readAsDataURL(file);
+  	  }
+  	}    
+    
+        setTimeout(function(){
+            $('.loader_bg').fadeToggle();
+        }, 1500);
+    </script>
 </body>
 </html>
